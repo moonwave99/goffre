@@ -1,4 +1,5 @@
 <nav>
-    <a href="/">Home</a>
-    <a href="/about.html">About</a>
+    {{#each config.nav}}
+        <a href="{{getLink .}}" class="{{isCurrent . ..}}">{{label}}</a>
+    {{/each}}
 </nav>

@@ -1,6 +1,10 @@
 {
     "homepage": {
         "title": "Welcome to my homepage!",
-        "subtitle": "Here I talk about stuff"
+        "subtitle": "Here I talk about stuff."
+    },
+    "projects": {
+        "title": "My Projects",
+        "subtitle": "Here I talk about my projects."
     }
 }

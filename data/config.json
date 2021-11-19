@@ -1,3 +1,17 @@
 {
-    "defaultTitle": "My Homepage"
+    "defaultTitle": "My Homepage",
+    "nav": [
+        {
+            "label": "Homepage",
+            "id": "index"
+        },
+        {
+            "label": "My Projects",
+            "id": "projects"
+        },
+        {
+            "label": "About Me",
+            "id": "about"
+        }
+    ]
 }
