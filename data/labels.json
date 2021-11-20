@@ -6,5 +6,9 @@
     "projects": {
         "title": "My Projects",
         "subtitle": "Here I talk about my projects."
+    },
+    "blog": {
+        "title": "Blog",
+        "subtitle": "Here I write about stuff."
     }
 }

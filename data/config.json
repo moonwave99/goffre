@@ -2,16 +2,20 @@
     "defaultTitle": "My Homepage",
     "nav": [
         {
-            "label": "Homepage",
-            "id": "index"
+            "title": "Homepage",
+            "slug": "index"
         },
         {
-            "label": "My Projects",
-            "id": "projects"
+            "title": "Blog",
+            "slug": "blog"
         },
         {
-            "label": "About Me",
-            "id": "about"
+            "title": "My Projects",
+            "slug": "projects"
+        },
+        {
+            "title": "About Me",
+            "slug": "about"
         }
     ]
 }
