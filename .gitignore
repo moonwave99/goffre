@@ -1,6 +1,5 @@
 .cache/
 coverage/
-example/*
 node_modules/
 *.log
 
