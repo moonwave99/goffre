@@ -27,6 +27,8 @@ const dateFormats = {
 const helpers = {
     formatDate: (date, format = "short") =>
         date.toLocaleDateString(undefined, dateFormats[format]),
+    getPrevPageLink: (page) => (page > 1 ? `/blog/page/${page}` : "/blog"),
+    getNextPageLink: (page) => `/blog/page/${page}`,
 };
 
 const markdown = {

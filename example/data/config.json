@@ -4,7 +4,8 @@
     "nav": [
         {
             "title": "Home",
-            "slug": "index"
+            "slug": "index",
+            "link": "/"
         },
         {
             "title": "Blog",

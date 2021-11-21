@@ -9,10 +9,10 @@
     <p class="pagination">
         {{#pagination}}
             {{#prev}}
-            <a href="/blog/page/{{.}}.html">Newer posts</a>
+            <a href="{{getPrevPageLink .}}">Newer posts</a>
             {{/prev}}
             {{#next}}
-            <a href="/blog/page/{{.}}.html">Older posts</a>
+            <a href="/blog/page/{{.}}">Older posts</a>
             {{/next}}
         {{/pagination}}
     </p>

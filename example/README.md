@@ -14,4 +14,4 @@ TBD
 -   [x] homepage styles;
 -   [ ] sitemap;
 -   [x] custom markdown renderers;
--   [ ] redirect to first pagination page.
+-   [x] redirect to first pagination page.
