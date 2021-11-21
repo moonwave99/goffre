@@ -2,14 +2,7 @@
     <header>
         <h1>{{title}}</h1>
         <time>{{formatDate created_at "long"}}</time>
-        <figure{{#caption}} class="has-figcaption"{{/caption}}>
-            <img class="lazy loadable" data-src="{{cover}}" alt="{{title}}" />
-            {{#caption}}
-                <figcaption>
-                    <a href="{{link}}">{{text}}</a>
-                </figcaption>
-            {{/caption}}
-        </figure>
+        {{> blog/post-cover}}
     </header>
     <section class="text-body">
         {{{content}}}
@@ -18,13 +11,13 @@
     {{#prevItem . list=posts}}
         <div>
             <h3>Previous Post</h3>
-            {{>blog-post-card}}
+            {{>blog/post-card}}
         </div>
     {{/prevItem}}        
     {{#nextItem . list=posts}}
         <div>
             <h3>Next Post</h3>
-            {{>blog-post-card}}
+            {{>blog/post-card}}
         </div>
     {{/nextItem}}    
     </footer>

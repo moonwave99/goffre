@@ -3,7 +3,12 @@ title: Another Post
 template: blog/post
 created_at: 2021-11-21
 slug: blog/:created_at/:title
-cover: https://source.unsplash.com/collection/3403106/800x450?2
+cover:
+    url: https://source.unsplash.com/collection/3403106/800x450?2
+    caption: A nice picture
+    attribution:
+        text: "Source: Unsplash"
+        link: https://source.unsplash.com/
 ---
 
 For Lucy had her work cut out for her.

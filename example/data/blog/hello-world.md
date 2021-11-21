@@ -3,7 +3,12 @@ title: Hello World
 template: blog/post
 created_at: 2021-11-20
 slug: blog/:created_at/:title
-cover: https://source.unsplash.com/collection/3403106/800x450?1
+cover:
+    url: https://source.unsplash.com/collection/3403106/800x450?1
+    caption: A nice picture
+    attribution:
+        text: "Source: Unsplash"
+        link: https://source.unsplash.com/
 ---
 
 MRS. DALLOWAY said she would buy the flowers herself.

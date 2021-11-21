@@ -1,0 +1,14 @@
+{{#cover}}
+<figure class="figure-wide">
+    <img class="lazy loadable" data-src="{{url}}" alt="{{../title}}" />
+    {{#if caption}}
+        <figcaption>
+            {{caption}}
+            {{#attribution}}
+            | <a href="{{link}}" target="_blank" rel="noopener noreferrer"
+>{{text}}</a>
+            {{/attribution}}
+        </figcaption>
+    {{/if}}
+</figure>
+{{/cover}}

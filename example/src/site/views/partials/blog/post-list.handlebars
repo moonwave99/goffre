@@ -1,7 +1,7 @@
 <ul class="article-list">
     {{#list posts sortBy="created_at" order="desc" limit=config.postsPerPage}}
         <li>
-            {{>blog-post-card}}
+            {{>blog/post-card}}
         </li>
     {{/list }}
 </ul>

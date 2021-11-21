@@ -173,7 +173,6 @@ body > footer {
 .article-card figure {
     overflow: hidden;
     margin: 0 0 1rem 0;
-    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .blog-post header figure,
@@ -183,13 +182,6 @@ body > footer {
     line-height: 3rem;
     font-size: 0.9rem;
     font-style: italic;
-}
-
-.blog-post header figure.has-figcaption,
-.text-body figure.has-figcaption,
-.article-card figure.has-figcaption,
-.article-card figure.loaded {
-    background-color: transparent;
 }
 
 .article-card figure img {
@@ -222,10 +214,25 @@ body > footer {
     margin-bottom: 3rem;
 }
 
-.blog-post header figure img {
+.figure-wide img {
     aspect-ratio: 16/9;
     display: block;
     width: 100%;
+}
+
+.figure-wide {
+    position: relative;
+}
+
+.figure-wide:before {
+    aspect-ratio: 16/9;
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .blog-post header time {
@@ -464,5 +471,11 @@ body > footer {
     }
     .page {
         margin-top: 4rem;
+    }
+    .blog-post footer {
+        flex-direction: column;
+    }
+    .blog-post footer > div + div {
+        margin: 0;
     }
 }

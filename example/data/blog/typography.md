@@ -3,10 +3,12 @@ title: Typography
 template: blog/post
 created_at: 2021-11-28
 slug: blog/:created_at/:title
-cover: https://source.unsplash.com/collection/4324303/800x450?5
-caption:
-    text: "Source: Unsplash"
-    link: https://source.unsplash.com/
+cover:
+    url: https://source.unsplash.com/collection/4324303/800x450?5
+    caption: A nice picture
+    attribution:
+        text: "Source: Unsplash"
+        link: https://source.unsplash.com/
 ---
 
 This page showcases various typographic choices.

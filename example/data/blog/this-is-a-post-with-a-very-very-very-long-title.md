@@ -3,7 +3,12 @@ title: This is a Post with a Very, Very, Very Long Title
 template: blog/post
 created_at: 2021-11-24
 slug: blog/:created_at/:title
-cover: https://source.unsplash.com/collection/4324303/800x450?4
+cover:
+    url: https://source.unsplash.com/collection/4324303/800x450?4
+    caption: A nice picture
+    attribution:
+        text: "Source: Unsplash"
+        link: https://source.unsplash.com/
 ---
 
 For it was the middle of June.

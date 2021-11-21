@@ -3,6 +3,9 @@ import fs from "fs-extra";
 
 const { outputFile } = fs;
 
+const UNSPLASH_COLLECTION = 4324303;
+const COVER_SIZE = "800x450";
+
 export async function generatePost({ index, postsPath }) {
     const fileName = `${
         index < 10 ? `0${index}` : index
@@ -12,7 +15,12 @@ title: This is post number ${index}
 template: blog/post
 created_at: 2021-11-${10 + Math.floor(Math.random() * 10)}
 slug: blog/:created_at/:title
-cover: https://source.unsplash.com/collection/4324303/800x450?${index}
+cover: 
+    url: https://source.unsplash.com/collection/${UNSPLASH_COLLECTION}/${COVER_SIZE}?${index}
+    caption: A nice picture
+    attribution:
+        text: "Source: Unsplash"
+        link: https://source.unsplash.com/
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
