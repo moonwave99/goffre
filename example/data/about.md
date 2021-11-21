@@ -1,5 +1,6 @@
 ---
 title: About me
+template: about
 ---
 
 Hi! My name is **xyz** and I like _thing 1_, _thing 2_ and _thing 3_.

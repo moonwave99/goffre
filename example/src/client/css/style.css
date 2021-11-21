@@ -147,7 +147,7 @@ body > footer {
 }
 
 .page-about .page,
-.page.blog-post {
+.page.text {
     max-width: 35rem;
 }
 
@@ -168,14 +168,13 @@ body > footer {
     margin-bottom: 2rem;
 }
 
-.blog-post header figure,
-.text-body figure,
+.text figure,
 .article-card figure {
     overflow: hidden;
     margin: 0 0 1rem 0;
 }
 
-.blog-post header figure,
+.text header figure,
 .text-body figure figcaption,
 .article-card figure figcaption {
     text-align: right;
@@ -190,14 +189,6 @@ body > footer {
     display: block;
 }
 
-.text-body figure img {
-    width: 100%;
-}
-
-.blog-post .text-body {
-    margin-bottom: 8rem;
-}
-
 .article-card time {
     display: block;
     color: rgba(0, 0, 0, 0.5);
@@ -208,10 +199,6 @@ body > footer {
 
 .article-card .excerpt {
     line-height: 1.618033988749895;
-}
-
-.blog-post header {
-    margin-bottom: 3rem;
 }
 
 .figure-wide img {
@@ -235,7 +222,19 @@ body > footer {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.blog-post header time {
+.text-body figure img {
+    width: 100%;
+}
+
+.blog-post .text-body {
+    margin-bottom: 8rem;
+}
+
+.text header {
+    margin-bottom: 3rem;
+}
+
+.text header time {
     display: block;
     color: rgba(0, 0, 0, 0.5);
     font-size: 0.9rem;
@@ -376,6 +375,32 @@ body > footer {
 .zoomable:hover {
     transform: scale(1.1);
     opacity: 0.6;
+}
+
+.page-projects .page > header {
+    margin-bottom: 4rem;
+}
+
+.project-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.project-list > li {
+    margin-bottom: 4rem;
+}
+
+.technologies {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.technologies li {
+    margin-right: 1rem;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (min-width: 961px) {

@@ -1,4 +1,28 @@
-<section class="page">
-    <h1>{{labels.projects.title}} | {{title}}</h1>
-    {{{content}}}
+<section class="page text project">
+    <header>
+        <h1>{{labels.projects.title}} | {{title}}</h1>        
+        <time>{{formatDate work_date "project"}}</time>        
+        {{> cover}}                       
+    </header>    
+    <section class="text-body">                 
+        {{{content}}}
+    </section>
+    <footer>
+        {{#homepage}}
+        <p>
+            <strong><a href="{{.}}" target="_blank" rel="noopener noreferrer">Homepage</a></strong>
+        </p>
+        {{/homepage}}
+        {{#demo}}
+        <p>
+            <strong><a href="{{.}}" target="_blank" rel="noopener noreferrer">Demo</a></strong>
+        </p>
+        {{/demo}}        
+        <p>Technologies used:</p>
+        <ul class="technologies">
+            {{#technologies}}
+            <li>{{.}}</li>
+            {{/technologies}}
+        </ul>        
+    </footer>
 </section>

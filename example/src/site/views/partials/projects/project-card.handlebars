@@ -1,0 +1,10 @@
+<article class="article-card">
+    <h2 class="ellipsis"><a href="{{getLink .}}">{{title}}</a></h2>
+    <time>{{formatDate work_date 'project'}}</time>
+    <p class="excerpt">{{{markdown excerpt}}}</p>
+    <ul class="technologies">
+        {{#technologies}}
+        <li>{{.}}</li>
+        {{/technologies}}
+    </ul>
+</article>

@@ -22,6 +22,10 @@ const dateFormats = {
         month: "numeric",
         day: "numeric",
     },
+    project: {
+        year: "numeric",
+        month: "long",
+    },
 };
 
 const helpers = {

@@ -4,11 +4,11 @@
         <p>{{ labels.projects.subtitle }}</p>
     </header>
     {{{content}}}
-    <ul>
-        {{#projects}}
+    <ul class="project-list">
+        {{#list projects sortBy="work_date" order="desc"}}
             <li>
-                <a href="{{getLink .}}">{{title}}</a>
+                {{>projects/project-card}}
             </li>
-        {{/projects}}
-    </ul>
+        {{/list }}
+    </ul>    
 </section>
