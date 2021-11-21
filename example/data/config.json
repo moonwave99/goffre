@@ -1,0 +1,26 @@
+{
+    "defaultTitle": "My Homepage",
+    "postsPerPage": 6,
+    "nav": [
+        {
+            "title": "Home",
+            "slug": "index"
+        },
+        {
+            "title": "Blog",
+            "slug": "blog"
+        },
+        {
+            "title": "My Projects",
+            "slug": "projects"
+        },
+        {
+            "title": "About Me",
+            "slug": "about"
+        },
+        {
+            "title": "Contact",
+            "slug": "contact"
+        }
+    ]
+}

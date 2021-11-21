@@ -1,0 +1,12 @@
+<article class="article-card">
+    <h2 class="ellipsis"><a href="{{getLink .}}">{{title}}</a></h2>
+    {{#cover}}
+    <figure>
+        <a href="{{getLink ..}}">
+            <img class="lazy loadable zoomable" data-src="{{.}}" alt="{{title}}"/>
+        </a>
+    </figure>
+    {{/cover}}
+    <time>{{formatDate created_at}}</time>
+    <p class="excerpt">{{excerpt}}</p>
+</article>

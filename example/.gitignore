@@ -1,0 +1,3 @@
+dist/
+data/blog/[0-9]*
+package-lock.json

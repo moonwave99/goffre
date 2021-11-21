@@ -1,0 +1,8 @@
+<nav>
+    <ul>
+    {{#each config.nav}}
+        <li><a href="{{getLink .}}" class="{{getNavClass . ..}}">{{title}}</a></li>
+    {{/each}}
+    </ul>
+    <button></button>
+</nav>
