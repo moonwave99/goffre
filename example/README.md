@@ -4,9 +4,36 @@
 
 Live demo: https://goffre-example-page.netlify.app/
 
-## Instructions
+## Installation
 
-TBD
+```bash
+$ npm install
+```
+
+If you want to generate some data, run:
+
+```bash
+$npm run dev:generate posts <qty>
+$npm run dev:generate projects <qty>
+```
+
+## Development
+
+Run in dev mode - in two separate tabs:
+
+```bash
+$ npm run dev:client
+$ npm run dev:site
+```
+
+## Build
+
+Build for production - run sequentially:
+
+```bash
+$ npm run build:client
+$ npm run build:site
+```
 
 ## Roadmap
 

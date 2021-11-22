@@ -1,25 +1,43 @@
-# Static homepage generator
+# Goffre - Mini static site generator
+
+[![Run tests](https://github.com/moonwave99/goffre/actions/workflows/tests.yml/badge.svg)](https://github.com/moonwave99/goffre/actions/workflows/tests.yml)
 
 ## Installation
 
 ```bash
-$ npm install
+$ npm install goffre --save
 ```
 
-## Development
+## Basic Usage
 
-Run in dev mode - in two separate tabs:
+```js
+import path from "path";
+import { load, render } from "goffre";
 
-```bash
-$ npm run dev:client
-$ npm run dev:site
+// dist folder
+const buildPath = path.join(__dirname, "dist");
+// data folder with markdown files
+const dataPath = path.join(__dirname, "data");
+// source folder with handlebars views
+const sitePath = path.join(__dirname, "src", "site");
+
+(async () => {
+    console.log(`Getting data from ${chalk.yellow(dataPath)}:`);
+
+    const { pages } = await load({ dataPath });
+
+    try {
+        const results = await render({
+            buildPath,
+            sitePath,
+            pages,
+        });
+        console.log(`Generated ${results.length} pages`);
+    } catch (error) {
+        console.log("Error generating site");
+        console.log(error);
+    }
+})();
 ```
 
-## Build
-
-Build for production - in two separate tabs:
-
-```bash
-$ npm run build:client
-$ npm run build:site
-```
+See the [example](tree/main/example) folder for a more advanced use case.
