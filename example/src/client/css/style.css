@@ -529,6 +529,9 @@ body > footer {
     .blog-post footer {
         flex-direction: column;
     }
+    .blog-post footer > div:first-child:not(:last-child) {
+        margin-bottom: 4rem;
+    }
     .blog-post footer > div + div {
         margin: 0;
     }
