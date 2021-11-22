@@ -22,7 +22,7 @@ const sitePath = path.join(__dirname, "src", "site");
             pages: [...pages],
             locals: {
                 ...json,
-                domain: "https://moonwave99.github.io/goffre/",
+                domain: "https://moonwave99.github.io/goffre",
             },
         });
         log(`Generated ${chalk.yellow(results.length)} pages`);
