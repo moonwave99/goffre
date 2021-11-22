@@ -1,6 +1,7 @@
 import path from "path";
-import { dirname } from "dirname-filename-esm";
 import chalk from "chalk";
+import { dirname } from "dirname-filename-esm";
+import { readFile } from "fs/promises";
 import { load, render, log } from "../lib/index.js";
 
 const __dirname = dirname(import.meta);
@@ -19,10 +20,21 @@ const sitePath = path.join(__dirname, "src", "site");
             verbose: true,
             buildPath,
             sitePath,
-            pages: [...pages],
+            pages: [
+                ...pages,
+                {
+                    title: json.config.title,
+                    description: json.config.description,
+                    slug: "index",
+                    content: await readFile(
+                        path.join("..", "README.md"),
+                        "utf8"
+                    ),
+                },
+            ],
             locals: {
                 ...json,
-                domain: "https://moonwave99.github.io/goffre",
+                domain: json.config.domain,
             },
         });
         log(`Generated ${chalk.yellow(results.length)} pages`);

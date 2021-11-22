@@ -1,7 +1,9 @@
 {
+    "title": "Goffre | Mini static site generator",
+    "description": "Goffre is a minimal static site generator available to the node.js ecosystem.",
     "nav": [
         {
-            "title": "Goffre",
+            "title": "Home",
             "slug": "index",
             "link": "/"
         },
@@ -10,6 +12,7 @@
             "slug": "docs"
         }
     ],
+    "domain": "https://moonwave99.github.io/goffre",
     "repo": "https://github.com/moonwave99/goffre",
     "author": {
         "name": "Diego Caponera",
