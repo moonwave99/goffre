@@ -18,7 +18,7 @@ const dateFormats = {
     },
     short: {
         year: "numeric",
-        month: "numeric",
+        month: "long",
         day: "numeric",
     },
     project: {
