@@ -8,7 +8,7 @@
     "scripts": {
         "clean": "rm -rf dist",
         "dev:client": "webpack serve --mode development",
-        "dev:site": "nodemon -e js,json,md,handlebars --watch data --watch src/site --watch index.js --watch ../lib",
+        "dev:site": "nodemon -e js,json,md,handlebars --watch data --watch src/site --watch index.js --watch ../lib --watch ../README.md",
         "build:client": "webpack --mode production",
         "build:site": "MODE=prod node index.js"
     },

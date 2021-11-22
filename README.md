@@ -68,7 +68,7 @@ will be:
 
 **Note:** the markdown body is not yet parsed at this stage.
 
-The `render()` method writes then every incoming page to `{page.slug}.html` - you can add further pages to the collected ones like:
+The `render()` method writes then every incoming page to `{page.slug}.html` - you can add further pages to the collected ones, like the text you are reading from the main `README.md` file of the repository:
 
 ```js
 const { pages } = await load({ dataPath });
@@ -78,9 +78,11 @@ const results = await render({
     pages: [
         ...pages,
         {
-            title: "About",
-            slug: "about",
-            content: "Write me at [my address](hello@example.com)",
+            title: "Goffre | Mini static site generator",
+            description:
+                "Goffre is a minimal static site generator available to the node.js ecosystem.",
+            slug: "index",
+            content: await readFile(path.join("..", "README.md"), "utf8"),
         },
     ],
 });
@@ -88,29 +90,33 @@ const results = await render({
 
 ## For a better development experience
 
-Goffre does not provide any watching / serving feature, because there are already great libraries doing that: chances are high that you are using [webpack][webpack] for bundling the frontend CSS and JS - just use its [dev server][webpack-dev-server] - see the [configuration file for this very page][webpack-config] as reference!
+Goffre does not provide any watching / serving features out of the box, but don't worry.
 
-What about watching? I just use [nodemon][nodemon] to watch the generation script, the data folder and the handlebars views folder:
+**Serving**: if you use [webpack][webpack] for bundling the frontend CSS and JS, just use its [dev server][webpack-dev-server] - see the [configuration file for this very page][webpack-config] as reference. If you don't, a simple [http-server][http-server] will do.
+
+**Watching**: use [nodemon][nodemon] to watch the _generation script_, the _data folder_ and the _handlebars views folder_:
 
 ```bash
-$ nodemon -e js,json,md,handlebars --watch data --watch src/site --watch index.js
+$ nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/site
 ```
 
-The scripts of `package.json` will look like:
+The scripts of `package.json` will look more or less like:
 
 ```json
 {
     "clean": "rm -rf dist",
     "dev:client": "webpack serve --mode development",
-    "dev:site": "nodemon -e js,json,md,handlebars --watch data --watch src/site --watch index.js",
+    "dev:site": "nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/site",
     "build:client": "webpack --mode production",
     "build:site": "node index.js"
 }
 ```
 
+Just `npm run dev:client` and `npm run dev:site` in two terminal tabs and you are done. Don't forget to `npm install` the needed dependencies of course!
+
 ## Roadmap
 
--   [ ] homepage
+-   [x] homepage
 -   [ ] docs
 -   [ ] finish basic unit testing
 -   [ ] e2e tests
@@ -120,6 +126,7 @@ The scripts of `package.json` will look like:
 [mdfront]: https://www.google.com/search?q=markdown+frontmatter
 [webpack]: https://webpack.js.org/
 [webpack-dev-server]: https://webpack.js.org/configuration/dev-server/
+[http-server]: https://www.npmjs.com/package/http-server
 [nodemon]: https://www.npmjs.com/package/nodemon
 [example]: https://github.com/moonwave99/goffre/tree/main/example
 [docs]: https://moonwave99.github.io/goffre/docs
