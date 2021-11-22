@@ -30,7 +30,7 @@ jobs:
             - run: npm ci
             - run: cd homepage && npm ci
             - run: cd homepage && npm run build:client
-            - run: cd homepage && npm run build:site
+            - run: MODE=prod cd homepage && npm run build:site
 
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v3

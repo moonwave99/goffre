@@ -1,9 +1,9 @@
 #!/bin/bash
 
 cd ..
-npm i
+npm ci
 cd example
-npm i
+npm ci
 npm run dev:generate posts 20
 npm run dev:generate projects 10
 npm run build:client
