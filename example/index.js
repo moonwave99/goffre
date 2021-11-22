@@ -70,6 +70,7 @@ const markdown = {
 
     try {
         const results = await render({
+            verbose: true,
             buildPath,
             sitePath,
             pages: [
