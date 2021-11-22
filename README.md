@@ -22,8 +22,7 @@ const dataPath = path.join(__dirname, "data");
 const sitePath = path.join(__dirname, "src", "site");
 
 (async () => {
-    console.log(`Getting data from ${chalk.yellow(dataPath)}:`);
-
+    console.log(`Getting data from ${dataPath}:`);
     const { pages } = await load({ dataPath });
 
     try {
@@ -34,8 +33,7 @@ const sitePath = path.join(__dirname, "src", "site");
         });
         console.log(`Generated ${results.length} pages`);
     } catch (error) {
-        console.log("Error generating site");
-        console.log(error);
+        console.log("Error generating site", error);
     }
 })();
 ```
