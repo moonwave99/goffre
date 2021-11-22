@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "clean": "rm -rf dist",
+        "clean": "rm -rf dist && rm data/**/[0-9]*",
         "dev:generate": "node ./generate.js",
         "dev:client": "webpack serve --mode development",
         "dev:site": "nodemon -e js,json,md,handlebars --watch data --watch src/site --watch index.js --watch ../lib",
@@ -21,7 +21,9 @@
         "copy-webpack-plugin": "^10.0.0",
         "css-loader": "^6.5.1",
         "dirname-filename-esm": "^1.1.1",
+        "faker": "^5.5.3",
         "fs-extra": "^10.0.0",
+        "js-yaml": "^4.1.0",
         "mini-css-extract-plugin": "^2.4.5",
         "nodemon": "^2.0.15",
         "postcss": "^8.3.11",

@@ -1,0 +1,17 @@
+<dl>
+    {{#homepage}}
+    <dt>Homepage</dt>
+    <dd><a href="{{.}}" target="_blank" rel="noopener noreferrer">Link</a></dd>
+    {{/homepage}}
+    {{#demo}}
+    <dt>Demo</dt>
+    <dd><a href="{{.}}" target="_blank" rel="noopener noreferrer">Link</a></dd>
+    {{/demo}}        
+    <dt>Technologies used</dt>
+    <dd class="techs">
+    {{#technologies}}
+        <span>{{.}}</span>
+    {{/technologies}}
+    </dd>
+    </dt>        
+</dl>

@@ -1,14 +1,55 @@
 import path from "path";
 import fs from "fs-extra";
+import faker from "faker";
+import yaml from "js-yaml";
 
 const { outputFile } = fs;
+const { date, random, lorem } = faker;
 
 const [, , what, length = 20] = process.argv;
+
+const techs = [
+    "react",
+    "node-js",
+    "css",
+    "web-workers",
+    "svelte",
+    "vue",
+    "fortran",
+    "cobol",
+    "brainfuck",
+    "cabal",
+    "nosql",
+    "postgres",
+    "astrology",
+];
+
+const projectRoots = [
+    "aloa",
+    "oslo",
+    "din",
+    "mela",
+    "sito",
+    "filo",
+    "nana",
+    "bela",
+];
+
+const projectSuffixes = ["ify", "ino", "top", "fix", "tic", "max"];
+
+function getProjectName() {
+    const name = `${random.arrayElement(projectRoots)}${random.arrayElement(
+        projectSuffixes
+    )}`;
+    return `${name[0].toUpperCase()}${name.slice(1)}`;
+}
 
 const UNSPLASH_COLLECTION = 4324303;
 const COVER_SIZE = "800x450";
 
 (async () => {
+    // console.log(faker.lorem.paragraphs(5));
+    // return;
     await Promise.all(
         Array.from({ length }, (_, index) => {
             switch (what) {
@@ -32,58 +73,55 @@ export async function generatePost({ index, basePath }) {
     const fileName = `${
         index < 10 ? `0${index}` : index
     }-this-is-a-blog-post.md`;
+
+    const frontMatter = {
+        title: `This is post number ${index}`,
+        template: "pages/blog/post",
+        created_at: date.between("2010-01-01", "2020-01-01"),
+        slug: "blog/:created_at/:title",
+        cover: {
+            url: `https://source.unsplash.com/collection/${UNSPLASH_COLLECTION}/${COVER_SIZE}?${index}`,
+            caption: "A nice picture",
+            attribution: {
+                text: "Source: Unsplash",
+                link: "https://source.unsplash.com/",
+            },
+        },
+    };
+
     const output = `---
-title: This is post number ${index}
-template: pages/blog/post
-created_at: 2021-11-${10 + Math.floor(Math.random() * 10)}
-slug: blog/:created_at/:title
-cover: 
-    url: https://source.unsplash.com/collection/${UNSPLASH_COLLECTION}/${COVER_SIZE}?${index}
-    caption: A nice picture
-    attribution:
-        text: "Source: Unsplash"
-        link: https://source.unsplash.com/
----
+${yaml.dump(frontMatter)}---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+${lorem.paragraphs(5)}`;
 
-Nunc mattis volutpat sollicitudin. Pellentesque pulvinar, lectus a dictum porta, lorem ante volutpat risus, vel ultrices leo magna a orci. Quisque sit amet metus in urna congue lacinia. Nunc nulla nulla, luctus eget rutrum quis, finibus sed ex. Suspendisse posuere eu erat eget pulvinar. Quisque efficitur, risus id posuere sagittis, odio velit tristique neque, congue faucibus ante lacus ut massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-
-Maecenas condimentum leo nec erat sagittis, vitae ultrices elit efficitur. Nullam in consequat libero. Cras et velit ante. In hac habitasse platea dictumst. Ut placerat sed nisl sed semper. Nam sit amet ipsum non eros vehicula ullamcorper. Morbi a ligula vitae dui ultrices volutpat. Phasellus viverra ornare rhoncus. Mauris eros neque, mollis eget gravida at, vestibulum in dolor. Donec interdum libero et lectus maximus luctus. Sed congue justo sed tortor dapibus blandit. Vestibulum volutpat, erat nec convallis commodo, sem risus euismod quam, sed facilisis nisi erat vel lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-
-Vivamus aliquet porttitor velit, commodo sodales arcu. Sed feugiat tortor eget sodales facilisis. Proin ante tellus, aliquam quis neque lacinia, volutpat fringilla mi. Nullam quis scelerisque ex. Ut sagittis ornare ultricies. In scelerisque odio sed neque aliquet, eu euismod sem iaculis. Duis sagittis tortor quis erat efficitur volutpat. Suspendisse ut augue sodales, fermentum lorem id, ultrices felis.`;
     return await outputFile(path.join(basePath, fileName), output);
 }
 
 export async function generateProject({ index, basePath }) {
+    const title = getProjectName();
     const fileName = `${index < 10 ? `0${index}` : index}-this-is-a-project.md`;
+
+    const frontMatter = {
+        title,
+        slug: `projects/${index}/:title`,
+        template: "pages/projects/project",
+        work_date: date.between("2010-01-01", "2020-01-01"),
+        homepage: "https://example.com/",
+        demo: "https://example.com/",
+        technologies: random.arrayElements(techs, 3),
+        cover: {
+            url: `https://source.unsplash.com/${COVER_SIZE}/?web&${index}`,
+            caption: "A nice picture",
+            attribution: {
+                text: "Source: Unsplash",
+                link: "https://source.unsplash.com/",
+            },
+        },
+    };
     const output = `---
-title: Project no. ${index}
-template: pages/projects/project
-technologies:
-    - express
-    - webpack
-    - handlebars
-    - markdown
-work_date: 20${10 + Math.floor(Math.random() * 10)}-0${
-        1 + Math.floor(Math.random() * 8)
-    }-01
-homepage: https://example.com/
-demo: https://example.com/
-cover:
-    url: https://source.unsplash.com/${COVER_SIZE}/?web&${index}
-    caption: A nice picture
-    attribution:
-        text: "Source: Unsplash"
-        link: https://source.unsplash.com/
----
+${yaml.dump(frontMatter)}---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+${lorem.paragraphs(5)}`;
 
-Nunc mattis volutpat sollicitudin. Pellentesque pulvinar, lectus a dictum porta, lorem ante volutpat risus, vel ultrices leo magna a orci. Quisque sit amet metus in urna congue lacinia. Nunc nulla nulla, luctus eget rutrum quis, finibus sed ex. Suspendisse posuere eu erat eget pulvinar. Quisque efficitur, risus id posuere sagittis, odio velit tristique neque, congue faucibus ante lacus ut massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-
-Maecenas condimentum leo nec erat sagittis, vitae ultrices elit efficitur. Nullam in consequat libero. Cras et velit ante. In hac habitasse platea dictumst. Ut placerat sed nisl sed semper. Nam sit amet ipsum non eros vehicula ullamcorper. Morbi a ligula vitae dui ultrices volutpat. Phasellus viverra ornare rhoncus. Mauris eros neque, mollis eget gravida at, vestibulum in dolor. Donec interdum libero et lectus maximus luctus. Sed congue justo sed tortor dapibus blandit. Vestibulum volutpat, erat nec convallis commodo, sem risus euismod quam, sed facilisis nisi erat vel lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-
-Vivamus aliquet porttitor velit, commodo sodales arcu. Sed feugiat tortor eget sodales facilisis. Proin ante tellus, aliquam quis neque lacinia, volutpat fringilla mi. Nullam quis scelerisque ex. Ut sagittis ornare ultricies. In scelerisque odio sed neque aliquet, eu euismod sem iaculis. Duis sagittis tortor quis erat efficitur volutpat. Suspendisse ut augue sodales, fermentum lorem id, ultrices felis.`;
     return await outputFile(path.join(basePath, fileName), output);
 }

@@ -189,7 +189,7 @@ body > footer {
     display: block;
 }
 
-.article-card time {
+.article-card > time {
     display: block;
     color: rgba(0, 0, 0, 0.5);
     font-size: 0.8rem;
@@ -353,6 +353,29 @@ body > footer {
     margin-top: -1rem;
 }
 
+.page dl {
+    display: grid;
+    grid-template-columns: max-content auto;
+    line-height: 2rem;
+}
+
+.page dt {
+    grid-column-start: 1;
+    font-weight: bold;
+}
+
+.page dd {
+    grid-column-start: 2;
+}
+
+.page dd.techs {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.page dd.techs span:not(:last-child):after {
+    content: ",";
+}
+
 .ellipsis {
     white-space: nowrap;
     overflow: hidden;
@@ -388,19 +411,24 @@ body > footer {
 }
 
 .project-list > li {
-    margin-bottom: 4rem;
+    margin-bottom: 8rem;
 }
 
-.technologies {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.project-card h2 {
     display: flex;
+    align-items: center;
 }
 
-.technologies li {
-    margin-right: 1rem;
+.project-card h2 time {
+    font-size: 1rem;
     color: rgba(0, 0, 0, 0.5);
+    margin-left: auto;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.project-card .excerpt {
+    margin-bottom: 1rem;
 }
 
 @media screen and (min-width: 961px) {

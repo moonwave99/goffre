@@ -1,11 +1,11 @@
 {
     "index": {
         "title": "Welcome to my homepage!",
-        "subtitle": "Here I talk about stuff."
+        "subtitle": "Software solutions / My Weltanschauung"
     },
     "projects": {
         "title": "My Projects",
-        "subtitle": "Here I talk about my projects."
+        "subtitle": "These are my most relevant works."
     },
     "blog": {
         "title": "Blog",
