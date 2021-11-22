@@ -10,7 +10,8 @@
     "main": "lib/index.js",
     "type": "module",
     "scripts": {
-        "test": "ava"
+        "test": "ava",
+        "lint": "npx eslint ./lib --ext .js,.jsx,.ts,.tsx"
     },
     "keywords": [
         "front-matter",
@@ -37,6 +38,8 @@
     },
     "devDependencies": {
         "ava": "^3.15.0",
-        "faker": "^5.5.3"
+        "eslint": "^8.3.0",
+        "faker": "^5.5.3",
+        "js-yaml": "^4.1.0"
     }
 }
