@@ -1,0 +1,18 @@
+{
+    "nav": [
+        {
+            "title": "Goffre",
+            "slug": "index",
+            "link": "/"
+        },
+        {
+            "title": "Docs",
+            "slug": "docs"
+        }
+    ],
+    "repo": "https://github.com/moonwave99/goffre",
+    "author": {
+        "name": "Diego Caponera",
+        "link": "https://github.com/moonwave99"
+    }
+}

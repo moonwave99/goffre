@@ -21,7 +21,7 @@ function loadBackground() {
 (() => {
     const $nav = document.querySelector("nav");
 
-    window.addEventListener("scroll", (event) => {
+    window.addEventListener("scroll", () => {
         $nav.classList.toggle("scrolled", window.scrollY > 0);
         document.body.classList.remove("nav-open");
     });

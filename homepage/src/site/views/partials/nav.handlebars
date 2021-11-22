@@ -1,0 +1,9 @@
+<nav>
+    <ul>
+    {{#each config.nav}}
+        <li><a href="{{getLink .}}" class="{{getNavClass . ..}}">{{title}}</a></li>
+    {{/each}}
+        <li><a target="_blank" rel="noopener noreferrer" href="{{config.repo}}">See on Github</a></li>
+    </ul>
+    <button></button>
+</nav>
