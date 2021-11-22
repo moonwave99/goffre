@@ -40,7 +40,7 @@ const sitePath = path.join(__dirname, "src", "site");
 })();
 ```
 
-See the [example on github][example] for a more advanced use case, and the [documentation](/docs) for the complete reference.
+See the [example on github][example] for a more advanced use case, and the [documentation][docs] for the complete reference.
 
 ## Data collecting and rendering are separate steps
 
@@ -122,4 +122,5 @@ The scripts of `package.json` will look like:
 [webpack-dev-server]: https://webpack.js.org/configuration/dev-server/
 [nodemon]: https://www.npmjs.com/package/nodemon
 [example]: https://github.com/moonwave99/goffre/tree/main/example
+[docs]: https://moonwave99.github.io/goffre/docs
 [webpack-config]: https://github.com/moonwave99/goffre/blob/main/homepage/webpack.config.cjs
