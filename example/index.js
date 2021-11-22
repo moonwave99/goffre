@@ -100,12 +100,14 @@ const markdown = {
                 projects,
                 posts,
             },
-            helpers,
+            handlebars: {
+                helpers,
+            },
             markdown,
         });
         log(`Generated ${chalk.yellow(results.length)} pages`);
     } catch (error) {
-        console.log(chalk.red(`[generator] Error generating site`));
+        console.log(chalk.red(`Error generating site`));
         console.log(error);
     }
 })();
