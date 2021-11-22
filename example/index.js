@@ -1,7 +1,6 @@
 import path from "path";
 import { dirname } from "dirname-filename-esm";
 import chalk from "chalk";
-import { generatePost } from "./lib.js";
 import { load, render, log, paginate } from "../lib/index.js";
 
 const __dirname = dirname(import.meta);
@@ -64,7 +63,7 @@ const markdown = {
         .map(({ items, pagination }) => ({
             slug: `blog/page/${pagination.page}`,
             title: `Blog | Page ${pagination.page} of ${pagination.total}`,
-            template: "blog/list-page",
+            template: "pages/blog/list-page",
             posts: items,
             pagination,
         }));
@@ -79,19 +78,19 @@ const markdown = {
                 {
                     title: "Home",
                     slug: "index",
-                    template: "index",
+                    template: "pages/index",
                     description: json.labels.index.subtitle,
                 },
                 {
                     title: "Projects",
                     slug: "projects",
-                    template: "projects/index",
+                    template: "pages/projects/index",
                     description: json.labels.projects.subtitle,
                 },
                 {
                     title: "Blog",
                     slug: "blog",
-                    template: "blog/index",
+                    template: "pages/blog/index",
                     description: json.labels.blog.subtitle,
                 },
             ],

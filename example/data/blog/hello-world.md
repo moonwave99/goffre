@@ -1,6 +1,6 @@
 ---
 title: Hello World
-template: blog/post
+template: pages/blog/post
 created_at: 2021-11-20
 slug: blog/:created_at/:title
 cover:

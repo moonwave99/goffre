@@ -1,6 +1,6 @@
 ---
 title: Goffre
-template: projects/project
+template: pages/projects/project
 technologies:
     - express
     - webpack
