@@ -55,12 +55,19 @@ export async function writeOutput({ basePath, fileName, output }) {
     return await outputFile(path.join(basePath, fileName), output);
 }
 
+export function toMarkdownFile({ content, ...frontMatter }) {
+    return `---
+${yaml.dump(frontMatter)}---
+
+${content}`;
+}
+
 export function generatePost({ index }) {
     const fileName = `${
         index < 10 ? `0${index}` : index
     }-this-is-a-blog-post.md`;
 
-    const frontMatter = {
+    return {
         title: `This is post number ${index}`,
         template: "pages/blog/post",
         created_at: date.between("2010-01-01", "2020-01-01"),
@@ -73,20 +80,15 @@ export function generatePost({ index }) {
                 link: "https://source.unsplash.com/",
             },
         },
+        fileName,
+        content: lorem.paragraphs(5),
     };
-
-    const output = `---
-${yaml.dump(frontMatter)}---
-
-${lorem.paragraphs(5)}`;
-
-    return { output, fileName };
 }
 
 export function generateProject({ name, index }) {
     const fileName = `${index < 10 ? `0${index}` : index}-${name}.md`;
 
-    const frontMatter = {
+    return {
         title: name,
         slug: `projects/:title`,
         template: "pages/projects/project",
@@ -102,11 +104,7 @@ export function generateProject({ name, index }) {
                 link: "https://source.unsplash.com/",
             },
         },
+        fileName,
+        content: lorem.paragraphs(5),
     };
-    const output = `---
-${yaml.dump(frontMatter)}---
-
-${lorem.paragraphs(5)}`;
-
-    return { output, fileName };
 }

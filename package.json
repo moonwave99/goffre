@@ -9,7 +9,9 @@
     },
     "main": "lib/index.js",
     "type": "module",
-    "scripts": {},
+    "scripts": {
+        "test": "ava"
+    },
     "keywords": [
         "front-matter",
         "generate",
