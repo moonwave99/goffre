@@ -1,5 +1,5 @@
 ---
-title: Documentation
+title: Goffre | Documentation
 ---
 
 TBD

@@ -42,7 +42,7 @@ const sitePath = path.join(__dirname, "src", "site");
 
 See the [example on github][example] for a more advanced use case, and the [documentation](/docs) for the complete reference.
 
-### Data collecting and rendering are separate steps
+## Data collecting and rendering are separate steps
 
 This is the key for the maximum flexibility: `load()` gets all the `.md` files inside the `dataPath` folder, and populates its return `pages` each with a unique `slug`.
 
@@ -61,7 +61,7 @@ will be:
 ```js
 {
     title: "Goffre | Mini static site generator",
-    slug: 'index'
+    slug: "index",
     content: "Goffre is a minimal static site generator available to the **node.js** ecosystem."
 }
 ```
