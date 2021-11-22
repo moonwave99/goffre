@@ -11,8 +11,8 @@
     <body class="page-index">
         <nav>
             <ul>
-                <li><a href="/" class="index current">Home</a></li>
-                <li><a href="/docs" class="docs">Docs</a></li>
+                <li><a href="https://moonwave99.github.io/goffre/" class="index current">Home</a></li>
+                <li><a href="https://moonwave99.github.io/goffre/docs" class="docs">Docs</a></li>
                 <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/moonwave99/goffre">See on Github</a></li>
             </ul>
             <button></button>
@@ -53,8 +53,8 @@ const sitePath = path.join(__dirname, &quot;src&quot;, &quot;site&quot;);
     }
 })();
 </code></pre>
-<p>See the <a href="https://github.com/moonwave99/goffre/tree/main/example">example on github</a> for a more advanced use case, and the <a href="/docs">documentation</a> for the complete reference.</p>
-<h3 id="data-collecting-and-rendering-are-separate-steps">Data collecting and rendering are separate steps</h3>
+<p>See the <a href="https://github.com/moonwave99/goffre/tree/main/example">example on github</a> for a more advanced use case, and the <a href="https://moonwave99.github.io/goffre/docs">documentation</a> for the complete reference.</p>
+<h2 id="data-collecting-and-rendering-are-separate-steps">Data collecting and rendering are separate steps</h2>
 <p>This is the key for the maximum flexibility: <code>load()</code> gets all the <code>.md</code> files inside the <code>dataPath</code> folder, and populates its return <code>pages</code> each with a unique <code>slug</code>.</p>
 <p>The markdown body is available in the <code>content</code> key, and the YAML front matter is destructured - the output of <code>load()</code> of the following file:</p>
 <pre><code class="language-yaml">---
@@ -66,7 +66,7 @@ Goffre is a minimal static site generator available to the **node.js** ecosystem
 <p>will be:</p>
 <pre><code class="language-js">{
     title: &quot;Goffre | Mini static site generator&quot;,
-    slug: &#39;index&#39;
+    slug: &quot;index&quot;,
     content: &quot;Goffre is a minimal static site generator available to the **node.js** ecosystem.&quot;
 }
 </code></pre>
