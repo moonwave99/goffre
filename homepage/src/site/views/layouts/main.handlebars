@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes"/>
         <title>{{title}}</title>
         {{> meta}}
-        <link rel="stylesheet" href="/bundle.css"></link>
+        <link rel="stylesheet" href="{{ getAsset "bundle.css" }}"></link>
     </head>
     <body class="page-{{slug}}">
         {{>nav}}
@@ -14,6 +14,6 @@
         {{{body}}}
         </main>
         {{>footer}}
-        <script src="/bundle.js"></script>
+        <script src="{{ getAsset "bundle.js" }}"></script>
     </body>
 </html>

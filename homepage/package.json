@@ -10,7 +10,7 @@
         "dev:client": "webpack serve --mode development",
         "dev:site": "nodemon -e js,json,md,handlebars --watch data --watch src/site --watch index.js --watch ../lib",
         "build:client": "webpack --mode production",
-        "build:site": "node index.js"
+        "build:site": "MODE=prod node index.js"
     },
     "browserslist": "last 2 versions",
     "devDependencies": {
