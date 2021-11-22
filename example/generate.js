@@ -25,17 +25,26 @@ const techs = [
 ];
 
 const projectRoots = [
-    "aloa",
+    "run",
     "oslo",
-    "din",
-    "mela",
-    "sito",
+    "dino",
+    "site",
     "filo",
-    "nana",
-    "bela",
+    "tipsy",
+    "micro",
+    "tico",
+    "mega",
+    "clumsy",
 ];
 
-const projectSuffixes = ["ify", "ino", "top", "fix", "tic", "max"];
+const projectSuffixes = ["ify", "fix", "matic", "max", "tastic"];
+
+const projectNames = projectRoots
+    .reduce(
+        (memo, x) => [...memo, ...projectSuffixes.map((y) => `${x}${y}`)],
+        []
+    )
+    .map((x) => `${x[0].toUpperCase()}${x.slice(1)}`);
 
 function getProjectName() {
     const name = `${random.arrayElement(projectRoots)}${random.arrayElement(
@@ -48,24 +57,28 @@ const UNSPLASH_COLLECTION = 4324303;
 const COVER_SIZE = "800x450";
 
 (async () => {
-    // console.log(faker.lorem.paragraphs(5));
-    // return;
-    await Promise.all(
-        Array.from({ length }, (_, index) => {
-            switch (what) {
-                case "posts":
-                    return generatePost({
+    switch (what) {
+        case "posts":
+            await Promise.all(
+                Array.from({ length }, (_, index) =>
+                    generatePost({
                         index: index + 1,
                         basePath: "./data/blog",
-                    });
-                case "projects":
-                    return generateProject({
+                    })
+                )
+            );
+            break;
+        case "projects":
+            await Promise.all(
+                random.arrayElements(projectNames, length).map((name, index) =>
+                    generateProject({
+                        name,
                         index: index + 1,
                         basePath: "./data/projects",
-                    });
-            }
-        })
-    );
+                    })
+                )
+            );
+    }
     console.log(`Generated ${length} ${what}.`);
 })();
 
@@ -97,20 +110,19 @@ ${lorem.paragraphs(5)}`;
     return await outputFile(path.join(basePath, fileName), output);
 }
 
-export async function generateProject({ index, basePath }) {
-    const title = getProjectName();
-    const fileName = `${index < 10 ? `0${index}` : index}-this-is-a-project.md`;
+export async function generateProject({ name, index, basePath }) {
+    const fileName = `${index < 10 ? `0${index}` : index}-${name}.md`;
 
     const frontMatter = {
-        title,
-        slug: `projects/${index}/:title`,
+        title: name,
+        slug: `projects/:title`,
         template: "pages/projects/project",
         work_date: date.between("2010-01-01", "2020-01-01"),
         homepage: "https://example.com/",
         demo: "https://example.com/",
         technologies: random.arrayElements(techs, 3),
         cover: {
-            url: `https://source.unsplash.com/${COVER_SIZE}/?web&${index}`,
+            url: `https://source.unsplash.com/${COVER_SIZE}/?web&${name}`,
             caption: "A nice picture",
             attribution: {
                 text: "Source: Unsplash",
