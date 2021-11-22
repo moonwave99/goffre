@@ -38,4 +38,4 @@ const sitePath = path.join(__dirname, "src", "site");
 })();
 ```
 
-See the [example](tree/main/example) folder for a more advanced use case.
+See the [example](https://github.com/moonwave99/goffre/tree/main/example) folder for a more advanced use case.
