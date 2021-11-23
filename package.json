@@ -1,6 +1,6 @@
 {
     "name": "goffre",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Mini static site generator",
     "author": {
         "name": "Diego Caponera",
@@ -26,7 +26,8 @@
         "yaml"
     ],
     "files": [
-        "lib/"
+        "lib/goffre.js",
+        "lib/helpers.js"
     ],
     "license": "MIT",
     "dependencies": {
