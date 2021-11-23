@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="generator" content="goffre"/>
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes"/>
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="{{ getAsset "/style.css" }}"></link>
+    </head>
+    <body class="page-{{slug}}">
+        {{> nav}}
+
+        <main>
+        {{{body}}}
+        </main>
+
+        {{> footer}}
+        <script src="{{ getAsset "/script.js" }}"></script>
+    </body>
+</html>

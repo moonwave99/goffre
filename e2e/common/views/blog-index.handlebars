@@ -1,0 +1,13 @@
+<section class="page">
+    <ul class="article-list">
+    {{#list posts sortBy="created_at" order="desc"}}
+        <li>
+            <article>
+                <h2 class="ellipsis"><a href="{{getLink .}}">{{title}}</a></h2>
+                <time>{{created_at}}</time>
+                <div class="excerpt">{{excerpt}}</div>
+            </article>
+        </li>
+    {{/list }}
+    </ul>
+</section>

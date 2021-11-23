@@ -62,16 +62,20 @@ ${yaml.dump(frontMatter)}---
 ${content}`;
 }
 
-export function generatePost({ index }) {
+export function generatePost({
+    index,
+    template = "pages/blog/post",
+    slug = "blog/:created_at/:title",
+}) {
     const fileName = `${
         index < 10 ? `0${index}` : index
     }-this-is-a-blog-post.md`;
 
     return {
         title: `This is post number ${index}`,
-        template: "pages/blog/post",
+        template,
         created_at: date.between("2010-01-01", "2020-01-01"),
-        slug: "blog/:created_at/:title",
+        slug,
         cover: {
             url: `https://source.unsplash.com/collection/${UNSPLASH_COLLECTION}/${COVER_SIZE}?${index}`,
             caption: "A nice picture",
