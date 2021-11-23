@@ -117,6 +117,7 @@ Just `npm run dev:client` and `npm run dev:site` in two terminal tabs and you ar
 ## Todo
 
 -   [x] sitePath -> viewsPath
+-   [ ] configure log level in goffre option
 -   [ ] make nav current class configurable
 -   [ ] move slug generation strategy to render (maybe)
 

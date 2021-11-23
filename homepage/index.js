@@ -30,7 +30,6 @@ const config = {
             external: true,
         },
     ],
-    domain: "https://moonwave99.github.io/goffre",
     repo: "https://github.com/moonwave99/goffre",
     author: {
         name: "Diego Caponera",
@@ -45,7 +44,7 @@ const config = {
 
     try {
         const results = await render({
-            verbose: true,
+            domain: "https://moonwave99.github.io/goffre",
             pages: [
                 ...pages,
                 {
@@ -62,7 +61,6 @@ const config = {
                 config,
                 pkg,
                 rev: git.short(".."),
-                domain: config.domain,
             },
         });
         log(`Generated ${chalk.yellow(results.length)} pages`);

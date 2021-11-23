@@ -11,6 +11,32 @@ const buildPath = path.join(__dirname, "dist");
 test.beforeEach(async () => await clean(buildPath));
 test.afterEach(async () => await clean(buildPath));
 
+const simplePages = [
+    {
+        title: "Home",
+        slug: "index",
+        template: "page",
+        content: "This is a simple test",
+    },
+    {
+        title: "Blog",
+        slug: "blog",
+        template: "blog-index",
+    },
+];
+
+const simpleNav = [
+    {
+        title: "Home",
+        slug: "index",
+        link: "/",
+    },
+    {
+        title: "Blog",
+        slug: "/blog",
+    },
+];
+
 test.serial("e2e  - simple", async (t) => {
     const viewsPath = path.join(__dirname, "..", "common", "views");
     const pages = generateItems(10);
@@ -19,35 +45,11 @@ test.serial("e2e  - simple", async (t) => {
     await render({
         buildPath,
         viewsPath,
-        pages: [
-            {
-                title: "Home",
-                slug: "index",
-                template: "page",
-                content: "This is a simple test",
-            },
-            {
-                title: "Blog",
-                slug: "blog",
-                template: "blog-index",
-            },
-            ...pages,
-        ],
+        logLevel: "silent",
+        pages: [...simplePages, ...pages],
         locals: {
             posts,
-            config: {
-                nav: [
-                    {
-                        title: "Home",
-                        slug: "index",
-                        link: "/",
-                    },
-                    {
-                        title: "Blog",
-                        slug: "/blog",
-                    },
-                ],
-            },
+            config: { nav: simpleNav },
         },
     });
 
@@ -71,38 +73,12 @@ test.serial("e2e  - simple - uglyUrls", async (t) => {
     await render({
         buildPath,
         viewsPath,
-        pages: [
-            {
-                title: "Home",
-                slug: "index",
-                template: "page",
-                content: "This is a simple test",
-            },
-            {
-                title: "Blog",
-                slug: "blog",
-                template: "blog-index",
-            },
-            ...pages,
-        ],
+        uglyUrls: true,
+        logLevel: "silent",
+        pages: [...simplePages, ...pages],
         locals: {
             posts,
-            config: {
-                goffre: {
-                    uglyUrls: true,
-                },
-                nav: [
-                    {
-                        title: "Home",
-                        slug: "index",
-                        link: "/",
-                    },
-                    {
-                        title: "Blog",
-                        slug: "/blog",
-                    },
-                ],
-            },
+            config: { nav: simpleNav },
         },
     });
 
