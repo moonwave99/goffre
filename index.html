@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="generator" content="goffre"/>
-        <meta name="version" content="35cfa4b">
+        <meta name="version" content="4090552">
         <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes"/>
         <title>Goffre | Mini static site generator</title>
         <meta name="description" content="Goffre is a minimal static site generator available to the node.js ecosystem." />
@@ -34,35 +34,28 @@
 <pre><code class="language-bash">$ npm install goffre --save
 </code></pre>
 <h2 id="basic-usage">Basic Usage</h2>
-<pre><code class="language-js">import path from &quot;path&quot;;
-import { load, render } from &quot;goffre&quot;;
-
-// dist folder
-const buildPath = path.join(__dirname, &quot;dist&quot;);
-// data folder with markdown files
-const dataPath = path.join(__dirname, &quot;data&quot;);
-// views folder with handlebars files
-const viewsPath = path.join(__dirname, &quot;src&quot;, &quot;views&quot;);
+<pre><code class="language-js">import { load, render } from &quot;goffre&quot;;
 
 (async () =&gt; {
-    console.log(`Getting data from ${dataPath}:`);
-    const { pages } = await load({ dataPath });
+    const { pages } = await load();
 
     try {
-        const results = await render({
-            buildPath,
-            viewsPath,
-            pages,
-        });
+        const results = await render({ pages });
         console.log(`Generated ${results.length} pages`);
     } catch (error) {
         console.log(&quot;Error generating site&quot;, error);
     }
 })();
 </code></pre>
+<p>Default paths:</p>
+<ul>
+<li><strong>markdown files</strong>: <code>./data</code> - used by <code>load()</code></li>
+<li><strong>output folder</strong>: <code>./dist</code> - used by <code>render()</code></li>
+<li><strong>handlebars views</strong>: <code>./src/views</code> - used by <code>render()</code></li>
+</ul>
 <p>See the <a href="https://github.com/moonwave99/goffre/tree/main/example">example on github</a> for a more advanced use case, and the <a href="https://moonwave99.github.io/goffre/docs">documentation</a> for the complete reference.</p>
 <h2 id="data-collecting-and-rendering-are-separate-steps">Data collecting and rendering are separate steps</h2>
-<p>This is the key for the maximum flexibility: <code>load()</code> gets all the <code>.md</code> files inside the <code>dataPath</code> folder, and populates its return <code>pages</code> each with a unique <code>slug</code>.</p>
+<p>This is the key for the maximum flexibility: <code>load()</code> gets all the <code>.md</code> files inside the data folder, and populates its return <code>pages</code> each with a unique <code>slug</code>.</p>
 <p>The markdown body is available in the <code>content</code> key, and the YAML front matter is destructured - the output of <code>load()</code> of the following file:</p>
 <pre><code class="language-yaml">---
 title: &quot;Goffre | Mini static site generator&quot;
@@ -132,7 +125,7 @@ const results = await render({
         <footer>
             <p>
                 &copy; 2021 <a href="https://github.com/moonwave99">Diego Caponera</a>
-                 | rev: <a href="https://github.com/moonwave99/goffre/commit/35cfa4b" target="_blank" rel="noopener noreferrer"><code>35cfa4b</code></a>
+                 | rev: <a href="https://github.com/moonwave99/goffre/commit/4090552" target="_blank" rel="noopener noreferrer"><code>4090552</code></a>
             </p>
         </footer>        <script src="https://moonwave99.github.io/goffre/bundle.js"></script>
     </body>
