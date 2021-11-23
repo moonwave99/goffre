@@ -2,9 +2,11 @@
     <ul>
     {{#each config.nav}}
         <li>
-            <a href="{{getLink .}}"
-                class="{{getNavClass . ..}}"
-                {{#if external }}target="_blank" rel="noopener noreferrer"{{/if}}>{{title}}</a>
+            {{#if external}}
+            <a href="{{ link }}" target="_blank" rel="noopener noreferrer">{{title}}</a>            
+            {{else}}
+            <a href="{{getLink .}}" class="{{getNavClass . ..}}">{{title}}</a>            
+            {{/if}}
         </li>
     {{/each}}
     </ul>
