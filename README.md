@@ -20,8 +20,8 @@ import { load, render } from "goffre";
 const buildPath = path.join(__dirname, "dist");
 // data folder with markdown files
 const dataPath = path.join(__dirname, "data");
-// source folder with handlebars views
-const sitePath = path.join(__dirname, "src", "site");
+// views folder with handlebars files
+const viewsPath = path.join(__dirname, "src", "views");
 
 (async () => {
     console.log(`Getting data from ${dataPath}:`);
@@ -30,7 +30,7 @@ const sitePath = path.join(__dirname, "src", "site");
     try {
         const results = await render({
             buildPath,
-            sitePath,
+            viewsPath,
             pages,
         });
         console.log(`Generated ${results.length} pages`);
@@ -97,7 +97,7 @@ Goffre does not provide any watching / serving features out of the box, but don'
 **Watching**: use [nodemon][nodemon] to watch the _generation script_, the _data folder_ and the _handlebars views folder_:
 
 ```bash
-$ nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/site
+$ nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/views
 ```
 
 The scripts of `package.json` will look more or less like:
@@ -106,7 +106,7 @@ The scripts of `package.json` will look more or less like:
 {
     "clean": "rm -rf dist",
     "dev:client": "webpack serve --mode development",
-    "dev:site": "nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/site",
+    "dev:site": "nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/views",
     "build:client": "webpack --mode production",
     "build:site": "node index.js"
 }
@@ -120,6 +120,12 @@ Just `npm run dev:client` and `npm run dev:site` in two terminal tabs and you ar
 -   [ ] docs
 -   [ ] finish basic unit testing
 -   [ ] e2e tests
+
+## Todo
+
+-   [ ] sitePath -> viewsPath
+-   [ ] make nav current class configurable
+-   [ ] move slug generation strategy to render (maybe)
 
 [handlebars]: https://handlebarsjs.com/
 [express-handlebars]: https://www.npmjs.com/package/express-handlebars
