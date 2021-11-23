@@ -2,18 +2,20 @@
     "name": "goffre",
     "version": "0.0.1",
     "description": "Mini static site generator",
-    "author": "moonwave99 [https://github.com/moonwwave99]",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:moonwave99/goffre.git"
+    "author": {
+        "name": "Diego Caponera",
+        "email": "hello@diegocaponera.com",
+        "url": "https://github.com/moonwwave99"
     },
-    "main": "lib/index.js",
+    "repository": "https://github.com/moonwave99/goffre",
+    "homepage": "https://moonwave99.github.io/goffre",
     "type": "module",
     "scripts": {
         "test": "ava lib/*.test.js",
         "test:e2e": "ava e2e/**/*.test.js",
         "lint": "npx eslint ./lib --ext .js,.jsx,.ts,.tsx"
     },
+    "main": "index.js",
     "keywords": [
         "front-matter",
         "generate",
@@ -26,7 +28,7 @@
     "files": [
         "lib/"
     ],
-    "license": "ISC",
+    "license": "MIT",
     "dependencies": {
         "chalk": "^4.1.2",
         "express": "^4.17.1",

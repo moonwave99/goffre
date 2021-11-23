@@ -2,7 +2,7 @@ import test from "ava";
 import path from "path";
 import { dirname } from "dirname-filename-esm";
 import { generateItems, clean, SuperStatic } from "../lib.js";
-import { render } from "../../lib/index.js";
+import { render } from "../../lib/goffre.js";
 
 const __dirname = dirname(import.meta);
 

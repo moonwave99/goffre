@@ -4,7 +4,7 @@ import {
     getRandomProjectNames,
     writeOutput,
     toMarkdownFile,
-} from "../generator.js";
+} from "../lib/generator.js";
 
 const [, , what, length = 20] = process.argv;
 

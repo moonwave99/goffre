@@ -3,8 +3,8 @@ import fs from "fs/promises";
 import rimraf from "rimraf";
 import cheerio from "cheerio";
 import { globby } from "globby";
-import { generatePost } from "../generator.js";
-import { getSlug } from "../lib/index.js";
+import { generatePost } from "../lib/generator.js";
+import { getSlug } from "../index.js";
 
 const { readFile } = fs;
 

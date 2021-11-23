@@ -1,7 +1,7 @@
 import path from "path";
 import { createRequire } from "module";
 import { readFile } from "fs/promises";
-import { load, render } from "../lib/index.js";
+import { load, render } from "../index.js";
 import git from "git-rev-sync";
 
 const require = createRequire(import.meta.url);
@@ -29,11 +29,6 @@ const config = {
             external: true,
         },
     ],
-    repo: "https://github.com/moonwave99/goffre",
-    author: {
-        name: "Diego Caponera",
-        link: "https://github.com/moonwave99",
-    },
 };
 
 (async () => {
@@ -41,7 +36,7 @@ const config = {
 
     try {
         await render({
-            domain: "https://moonwave99.github.io/goffre",
+            domain: pkg.homepage,
             logLevel: "verbose",
             pages: [
                 ...pages,

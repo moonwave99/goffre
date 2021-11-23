@@ -1,4 +1,4 @@
-import { load, render, paginate } from "../lib/index.js";
+import { load, render, paginate } from "../index.js";
 
 const dateFormats = {
     long: {
