@@ -12,19 +12,13 @@
         <nav>
             <ul>
                 <li>
-                    <a href="https://moonwave99.github.io/goffre/"
-                        class="index current"
-                        >Home</a>
+                    <a href="https://moonwave99.github.io/goffre/" class="index current">Home</a>            
                 </li>
                 <li>
-                    <a href="https://moonwave99.github.io/goffre//docs"
-                        class="docs"
-                        >Docs</a>
+                    <a href="https://moonwave99.github.io/goffre//docs" class="docs">Docs</a>            
                 </li>
                 <li>
-                    <a href="https://moonwave99.github.io/goffre/https://github.com/moonwave99/goffre"
-                        class=""
-                        target="_blank" rel="noopener noreferrer">See on Github</a>
+                    <a href="https://github.com/moonwave99/goffre" target="_blank" rel="noopener noreferrer">See on Github</a>            
                 </li>
             </ul>
             <button></button>
@@ -46,8 +40,8 @@ import { load, render } from &quot;goffre&quot;;
 const buildPath = path.join(__dirname, &quot;dist&quot;);
 // data folder with markdown files
 const dataPath = path.join(__dirname, &quot;data&quot;);
-// source folder with handlebars views
-const sitePath = path.join(__dirname, &quot;src&quot;, &quot;site&quot;);
+// views folder with handlebars files
+const viewsPath = path.join(__dirname, &quot;src&quot;, &quot;views&quot;);
 
 (async () =&gt; {
     console.log(`Getting data from ${dataPath}:`);
@@ -56,7 +50,7 @@ const sitePath = path.join(__dirname, &quot;src&quot;, &quot;site&quot;);
     try {
         const results = await render({
             buildPath,
-            sitePath,
+            viewsPath,
             pages,
         });
         console.log(`Generated ${results.length} pages`);
@@ -104,13 +98,13 @@ const results = await render({
 <p>Goffre does not provide any watching / serving features out of the box, but don&#39;t worry.</p>
 <p><strong>Serving</strong>: if you use <a href="https://webpack.js.org/">webpack</a> for bundling the frontend CSS and JS, just use its <a href="https://webpack.js.org/configuration/dev-server/">dev server</a> - see the <a href="https://github.com/moonwave99/goffre/blob/main/homepage/webpack.config.cjs">configuration file for this very page</a> as reference. If you don&#39;t, a simple <a href="https://www.npmjs.com/package/http-server">http-server</a> will do.</p>
 <p><strong>Watching</strong>: use <a href="https://www.npmjs.com/package/nodemon">nodemon</a> to watch the <em>generation script</em>, the <em>data folder</em> and the <em>handlebars views folder</em>:</p>
-<pre><code class="language-bash">$ nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/site
+<pre><code class="language-bash">$ nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/views
 </code></pre>
 <p>The scripts of <code>package.json</code> will look more or less like:</p>
 <pre><code class="language-json">{
     &quot;clean&quot;: &quot;rm -rf dist&quot;,
     &quot;dev:client&quot;: &quot;webpack serve --mode development&quot;,
-    &quot;dev:site&quot;: &quot;nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/site&quot;,
+    &quot;dev:site&quot;: &quot;nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/views&quot;,
     &quot;build:client&quot;: &quot;webpack --mode production&quot;,
     &quot;build:site&quot;: &quot;node index.js&quot;
 }
@@ -122,6 +116,12 @@ const results = await render({
 <li><input disabled="" type="checkbox"> docs</li>
 <li><input disabled="" type="checkbox"> finish basic unit testing</li>
 <li><input disabled="" type="checkbox"> e2e tests</li>
+</ul>
+<h2 id="todo">Todo</h2>
+<ul>
+<li><input disabled="" type="checkbox"> sitePath -&gt; viewsPath</li>
+<li><input disabled="" type="checkbox"> make nav current class configurable</li>
+<li><input disabled="" type="checkbox"> move slug generation strategy to render (maybe)</li>
 </ul>
 
     </section>
