@@ -27,12 +27,11 @@ const helpers = {
 
 const markdown = {
     renderer: {
-        image: (href, title, text) => {
-            return `<figure class="has-figcaption">
-                            <img class="lazy loadable" data-src="${href}" alt="${text}"/>
-                            <figcaption>${text}</figcaption>
-                        </figure>`;
-        },
+        image: (href, title, text) => `
+            <figure>
+                <img class="lazy loadable" data-src="${href}" alt="${text}"/>
+                <figcaption>${text}</figcaption>
+            </figure>`,
     },
 };
 
@@ -59,7 +58,7 @@ const markdown = {
 
     try {
         await render({
-            verbose: true,
+            logLevel: "verbose",
             pages: [
                 ...pages,
                 ...blogPages,

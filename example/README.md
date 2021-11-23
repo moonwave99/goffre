@@ -34,13 +34,3 @@ Build for production - run sequentially:
 $ npm run build:client
 $ npm run build:site
 ```
-
-## Roadmap
-
--   [x] blog pagination;
--   [x] blog prev/next;
--   [x] projects page;
--   [x] homepage styles;
--   [ ] sitemap;
--   [x] custom markdown renderers;
--   [x] redirect to first pagination page.

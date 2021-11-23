@@ -113,12 +113,14 @@ Just `npm run dev:client` and `npm run dev:site` in two terminal tabs and you ar
 -   [ ] docs
 -   [ ] finish basic unit testing
 -   [ ] e2e tests
+-   [ ] add sitemap to example
+-   [ ] add group projects by tags to example
 
 ## Todo
 
 -   [x] sitePath -> viewsPath
--   [ ] configure log level in goffre option
--   [ ] make nav current class configurable
+-   [x] configure log level in goffre option
+-   [ ] make nav current class configurable (maybe)
 -   [ ] move slug generation strategy to render (maybe)
 
 [handlebars]: https://handlebarsjs.com/
