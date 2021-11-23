@@ -13,26 +13,13 @@ $ npm install goffre --save
 ## Basic Usage
 
 ```js
-import path from "path";
 import { load, render } from "goffre";
 
-// dist folder
-const buildPath = path.join(__dirname, "dist");
-// data folder with markdown files
-const dataPath = path.join(__dirname, "data");
-// views folder with handlebars files
-const viewsPath = path.join(__dirname, "src", "views");
-
 (async () => {
-    console.log(`Getting data from ${dataPath}:`);
-    const { pages } = await load({ dataPath });
+    const { pages } = await load();
 
     try {
-        const results = await render({
-            buildPath,
-            viewsPath,
-            pages,
-        });
+        const results = await render({ pages });
         console.log(`Generated ${results.length} pages`);
     } catch (error) {
         console.log("Error generating site", error);
@@ -40,11 +27,17 @@ const viewsPath = path.join(__dirname, "src", "views");
 })();
 ```
 
+Default paths:
+
+-   **markdown files**: `./data` - used by `load()`
+-   **output folder**: `./dist` - used by `render()`
+-   **handlebars views**: `./src/views` - used by `render()`
+
 See the [example on github][example] for a more advanced use case, and the [documentation][docs] for the complete reference.
 
 ## Data collecting and rendering are separate steps
 
-This is the key for the maximum flexibility: `load()` gets all the `.md` files inside the `dataPath` folder, and populates its return `pages` each with a unique `slug`.
+This is the key for the maximum flexibility: `load()` gets all the `.md` files inside the data folder, and populates its return `pages` each with a unique `slug`.
 
 The markdown body is available in the `content` key, and the YAML front matter is destructured - the output of `load()` of the following file:
 

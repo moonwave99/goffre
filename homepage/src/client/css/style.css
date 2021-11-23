@@ -148,6 +148,10 @@ body > footer {
     border-radius: 0.25rem;
 }
 
+.text-body pre > code {
+    color: rgba(255, 255, 255, 0.8);
+}
+
 .text-body blockquote {
     font-family: Georgia, serif;
     font-style: italic;
