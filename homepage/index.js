@@ -8,7 +8,7 @@ const __dirname = dirname(import.meta);
 
 const buildPath = path.join(__dirname, "dist");
 const dataPath = path.join(__dirname, "data");
-const sitePath = path.join(__dirname, "src", "site");
+const viewsPath = path.join(__dirname, "src", "views");
 
 (async () => {
     log(`Getting data from ${chalk.yellow(dataPath)}:`);
@@ -19,7 +19,7 @@ const sitePath = path.join(__dirname, "src", "site");
         const results = await render({
             verbose: true,
             buildPath,
-            sitePath,
+            viewsPath,
             pages: [
                 ...pages,
                 {

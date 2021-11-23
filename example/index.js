@@ -7,7 +7,7 @@ const __dirname = dirname(import.meta);
 
 const buildPath = path.join(__dirname, "dist");
 const dataPath = path.join(__dirname, "data");
-const sitePath = path.join(__dirname, "src", "site");
+const viewsPath = path.join(__dirname, "src", "views");
 
 const dateFormats = {
     long: {
@@ -72,7 +72,7 @@ const markdown = {
         const results = await render({
             verbose: true,
             buildPath,
-            sitePath,
+            viewsPath,
             pages: [
                 ...pages,
                 ...blogPages,

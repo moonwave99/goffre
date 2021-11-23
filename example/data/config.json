@@ -9,19 +9,23 @@
         },
         {
             "title": "Blog",
-            "slug": "blog"
+            "slug": "blog",
+            "link": "/blog"
         },
         {
             "title": "My Projects",
-            "slug": "projects"
+            "slug": "projects",
+            "link": "/projects"
         },
         {
             "title": "About Me",
-            "slug": "about"
+            "slug": "about",
+            "link": "/about"
         },
         {
             "title": "Contact",
-            "slug": "contact"
+            "slug": "contact",
+            "link": "/contact"
         }
     ]
 }

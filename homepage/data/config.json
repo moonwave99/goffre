@@ -9,11 +9,16 @@
         },
         {
             "title": "Docs",
-            "slug": "docs"
+            "slug": "docs",
+            "link": "/docs"
+        },
+        {
+            "title": "See on Github",
+            "link": "https://github.com/moonwave99/goffre",
+            "external": true
         }
     ],
     "domain": "https://moonwave99.github.io/goffre",
-    "repo": "https://github.com/moonwave99/goffre",
     "author": {
         "name": "Diego Caponera",
         "link": "https://github.com/moonwave99"

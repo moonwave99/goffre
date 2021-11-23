@@ -1,0 +1,12 @@
+<nav>
+    <ul>
+    {{#each config.nav}}
+        <li>
+            <a href="{{getLink .}}"
+                class="{{getNavClass . ..}}"
+                {{#if external }}target="_blank" rel="noopener noreferrer"{{/if}}>{{title}}</a>
+        </li>
+    {{/each}}
+    </ul>
+    <button></button>
+</nav>
