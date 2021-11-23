@@ -5,7 +5,7 @@
             {{#if external}}
             <a href="{{ link }}" target="_blank" rel="noopener noreferrer">{{title}}</a>            
             {{else}}
-            <a href="{{getLink .}}" class="{{getNavClass . ..}}">{{title}}</a>            
+            <a href="{{ link }}" class="{{getNavClass . ..}}">{{title}}</a>            
             {{/if}}
         </li>
     {{/each}}
