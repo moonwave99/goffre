@@ -123,7 +123,7 @@ Just `npm run dev:client` and `npm run dev:site` in two terminal tabs and you ar
 
 ## Todo
 
--   [ ] sitePath -> viewsPath
+-   [x] sitePath -> viewsPath
 -   [ ] make nav current class configurable
 -   [ ] move slug generation strategy to render (maybe)
 

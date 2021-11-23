@@ -1,12 +1,10 @@
 import path from "path";
 import chalk from "chalk";
-import { dirname } from "dirname-filename-esm";
 import { createRequire } from "module";
 import { readFile } from "fs/promises";
 import { load, render, log } from "../lib/index.js";
 import git from "git-rev-sync";
 
-const __dirname = dirname(import.meta);
 const require = createRequire(import.meta.url);
 
 const pkg = require(path.join("..", "package.json"));
@@ -40,20 +38,14 @@ const config = {
     },
 };
 
-const buildPath = path.join(__dirname, "dist");
-const dataPath = path.join(__dirname, "data");
-const viewsPath = path.join(__dirname, "src", "views");
-
 (async () => {
-    log(`Getting data from ${chalk.yellow(dataPath)}:`);
+    log("Getting data...");
 
-    const { pages } = await load({ dataPath });
+    const { pages } = await load();
 
     try {
         const results = await render({
             verbose: true,
-            buildPath,
-            viewsPath,
             pages: [
                 ...pages,
                 {

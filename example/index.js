@@ -1,13 +1,5 @@
-import path from "path";
-import { dirname } from "dirname-filename-esm";
 import chalk from "chalk";
 import { load, render, log, paginate } from "../lib/index.js";
-
-const __dirname = dirname(import.meta);
-
-const buildPath = path.join(__dirname, "dist");
-const dataPath = path.join(__dirname, "data");
-const viewsPath = path.join(__dirname, "src", "views");
 
 const dateFormats = {
     long: {
@@ -46,9 +38,9 @@ const markdown = {
 };
 
 (async () => {
-    log(`Getting data from ${chalk.yellow(dataPath)}:`);
+    log("Getting data");
 
-    const { json, pages } = await load({ dataPath });
+    const { json, pages } = await load();
 
     const posts = pages.filter((x) => x.slug.startsWith("blog"));
     const projects = pages.filter((x) => x.slug.startsWith("project"));
@@ -71,8 +63,6 @@ const markdown = {
     try {
         const results = await render({
             verbose: true,
-            buildPath,
-            viewsPath,
             pages: [
                 ...pages,
                 ...blogPages,
