@@ -1,8 +1,7 @@
 import path from "path";
-import chalk from "chalk";
 import { createRequire } from "module";
 import { readFile } from "fs/promises";
-import { load, render, log } from "../lib/index.js";
+import { load, render } from "../lib/index.js";
 import git from "git-rev-sync";
 
 const require = createRequire(import.meta.url);
@@ -38,13 +37,12 @@ const config = {
 };
 
 (async () => {
-    log("Getting data...");
-
     const { pages } = await load();
 
     try {
-        const results = await render({
+        await render({
             domain: "https://moonwave99.github.io/goffre",
+            logLevel: "verbose",
             pages: [
                 ...pages,
                 {
@@ -63,9 +61,7 @@ const config = {
                 rev: git.short(".."),
             },
         });
-        log(`Generated ${chalk.yellow(results.length)} pages`);
     } catch (error) {
-        console.log(chalk.red(`Error generating site`));
-        console.log(error);
+        console.log("Error generating site", error);
     }
 })();

@@ -1,5 +1,4 @@
-import chalk from "chalk";
-import { load, render, log, paginate } from "../lib/index.js";
+import { load, render, paginate } from "../lib/index.js";
 
 const dateFormats = {
     long: {
@@ -38,8 +37,6 @@ const markdown = {
 };
 
 (async () => {
-    log("Getting data");
-
     const { json, pages } = await load();
 
     const posts = pages.filter((x) => x.slug.startsWith("blog"));
@@ -61,7 +58,7 @@ const markdown = {
         }));
 
     try {
-        const results = await render({
+        await render({
             verbose: true,
             pages: [
                 ...pages,
@@ -95,9 +92,7 @@ const markdown = {
             },
             markdown,
         });
-        log(`Generated ${chalk.yellow(results.length)} pages`);
     } catch (error) {
-        console.log(chalk.red(`Error generating site`));
-        console.log(error);
+        console.log("Error generating site", error);
     }
 })();
