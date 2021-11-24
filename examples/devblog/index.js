@@ -18,6 +18,8 @@ const dateFormats = {
     },
 };
 
+const domain = "https://goffre-examples-devblog.netlify.app";
+
 const helpers = {
     formatDate: (date, format = "short") =>
         date.toLocaleDateString(undefined, dateFormats[format]),
@@ -86,6 +88,7 @@ function groupByTech(projects) {
 
     try {
         await render({
+            domain,
             logLevel: "verbose",
             pages: [
                 ...pages,
@@ -119,6 +122,9 @@ function groupByTech(projects) {
                 helpers,
             },
             markdown,
+            sitemap: {
+                generate: true,
+            },
         });
     } catch (error) {
         console.log("Error generating site", error);
