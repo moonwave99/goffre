@@ -35,11 +35,39 @@ const markdown = {
     },
 };
 
+function groupByTag(projects) {
+    return projects.reduce((memo, x) => {
+        x.technologies.forEach((t) => {
+            const foundTech = memo.find((y) => y.name === t);
+            if (foundTech) {
+                foundTech.projects = [...foundTech.projects, x];
+                return;
+            }
+            memo = [
+                ...memo,
+                {
+                    name: t,
+                    projects: [x],
+                },
+            ];
+        });
+        return memo;
+    }, []);
+}
+
 (async () => {
     const { json, pages } = await load();
 
     const posts = pages.filter((x) => x.slug.startsWith("blog"));
     const projects = pages.filter((x) => x.slug.startsWith("project"));
+
+    const projectsByTagPages = groupByTag(projects).map((x) => ({
+        ...x,
+        slug: `projects/techs/${x.name}`,
+        title: `Projects | ${x.name}`,
+        template: "pages/projects/tech",
+        description: `These the projects where I used **${x.name}**:`,
+    }));
 
     const blogPages = paginate({
         collection: posts,
@@ -62,6 +90,7 @@ const markdown = {
             pages: [
                 ...pages,
                 ...blogPages,
+                ...projectsByTagPages,
                 {
                     title: "Home",
                     slug: "index",

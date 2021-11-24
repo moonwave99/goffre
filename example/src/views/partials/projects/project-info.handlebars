@@ -10,7 +10,7 @@
     <dt>Technologies used</dt>
     <dd class="techs">
     {{#technologies}}
-        <span>{{.}}</span>
+        <span><a href="{{ getParamLink '/projects/techs/:name' name=. }}">{{.}}</a></span>
     {{/technologies}}
     </dd>
     </dt>        

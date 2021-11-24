@@ -1,0 +1,14 @@
+<section class="page text">
+    <header>
+        <h1>{{title}}</h1>
+        <p>{{{ markdown description }}}</p>
+    </header>
+    {{{content}}}
+    <ul class="project-list">
+        {{#list projects sortBy="work_date" order="desc"}}
+            <li>
+                {{>projects/project-card}}
+            </li>
+        {{/list }}
+    </ul>    
+</section>
