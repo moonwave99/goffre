@@ -339,7 +339,7 @@ html {
 body {
     margin: 0;
     font-family: "Helvetica Neue", sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     min-width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -415,12 +415,12 @@ body > footer {
 }
 
 .page {
-    max-width: 960px;
+    max-width: 1024px;
     margin: 8rem auto;
 }
 
 .page.text {
-    max-width: 45rem;
+    max-width: 50rem;
 }
 
 .page > header {
@@ -544,7 +544,7 @@ body > footer {
     text-overflow: ellipsis;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1024px) {
     .page {
         width: 100%;
         padding: 0 1rem;
@@ -558,6 +558,7 @@ body > footer {
     }
     body {
         position: relative;
+        font-size: 16px;
     }
     body.nav-open nav ul {
         transform: translateY(0);
