@@ -35,7 +35,7 @@ const markdown = {
     },
 };
 
-function groupByTag(projects) {
+function groupByTech(projects) {
     return projects.reduce((memo, x) => {
         x.technologies.forEach((t) => {
             const foundTech = memo.find((y) => y.name === t);
@@ -61,7 +61,7 @@ function groupByTag(projects) {
     const posts = pages.filter((x) => x.slug.startsWith("blog"));
     const projects = pages.filter((x) => x.slug.startsWith("project"));
 
-    const projectsByTagPages = groupByTag(projects).map((x) => ({
+    const projectsByTagPages = groupByTech(projects).map((x) => ({
         ...x,
         slug: `projects/techs/${x.name}`,
         title: `Projects | ${x.name}`,

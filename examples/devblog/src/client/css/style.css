@@ -15,8 +15,8 @@ html {
 
 body {
     margin: 0;
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 16px;
+    font-family: "helvetica neue", sans-serif;
+    font-size: 20px;
     min-width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -168,6 +168,10 @@ body > footer {
     margin-bottom: 2rem;
 }
 
+.article-card h2 {
+    font-size: 1.5rem;
+}
+
 .text figure,
 .article-card figure {
     overflow: hidden;
@@ -201,7 +205,6 @@ body > footer {
 
 .article-card .excerpt {
     line-height: 1.618033988749895;
-    font-size: 0.9rem;
 }
 
 .figure-wide img {
@@ -250,6 +253,10 @@ body > footer {
 
 .blog-post footer > div {
     flex: 1;
+}
+
+.blog-post footer > div .ellipsis {
+    max-width: 17rem;
 }
 
 .blog-post footer > div + div {
@@ -360,6 +367,7 @@ body > footer {
     display: grid;
     grid-template-columns: max-content auto;
     line-height: 2rem;
+    font-size: 0.9rem;
 }
 
 .page dt {
@@ -474,6 +482,9 @@ body > footer {
 }
 
 @media screen and (max-width: 480px) {
+    body {
+        font-size: 16px;
+    }
     .page-index main > section h1 {
         font-size: 2rem;
         text-align: center;
