@@ -111,10 +111,10 @@ Just `npm run dev:client` and `npm run dev:site` in two terminal tabs and you ar
 
 -   [x] homepage
 -   [ ] docs
--   [ ] finish basic unit testing
--   [ ] e2e tests
+-   [x] finish basic unit testing
+-   [x] e2e tests
 -   [ ] add sitemap to example
--   [ ] add group projects by tags to example
+-   [x] add group projects by tags to example
 
 ## Todo
 

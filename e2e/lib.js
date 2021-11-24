@@ -43,6 +43,9 @@ export class SuperStatic {
     getPage(page) {
         return this.pages[page];
     }
+    getPages() {
+        return this.pages;
+    }
     hasPage(page) {
         return !!this.pages[page];
     }
