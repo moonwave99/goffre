@@ -1,6 +1,6 @@
 {
     "name": "goffre",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Mini static site generator",
     "author": {
         "name": "Diego Caponera",
