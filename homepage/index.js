@@ -44,6 +44,7 @@ const config = {
                     title: config.title,
                     description: config.description,
                     slug: "index",
+                    link: "/",
                     content: await readFile(
                         path.join("..", "README.md"),
                         "utf8"
@@ -54,6 +55,9 @@ const config = {
                 config,
                 pkg,
                 rev: git.short(".."),
+            },
+            sitemap: {
+                generate: true,
             },
         });
     } catch (error) {

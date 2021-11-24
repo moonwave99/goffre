@@ -11,7 +11,6 @@ const viewsPath = path.join(__dirname, "views");
 
 test.beforeEach(async () => await clean(buildPath));
 test.afterEach(async () => await clean(buildPath));
-test.afterEach(() => delete process.env.MODE);
 
 const simplePages = [
     {
@@ -120,9 +119,6 @@ test.serial("e2e - simple - uglyUrls", async (t) => {
 
 test.serial("e2e - simple - prod", async (t) => {
     const posts = generateItems(10);
-
-    process.env.MODE = "prod";
-
     const domain = "http://example.com";
 
     await render({
@@ -134,6 +130,9 @@ test.serial("e2e - simple - prod", async (t) => {
         locals: {
             posts,
             config: { nav: simpleNav },
+        },
+        env: {
+            mode: "prod",
         },
     });
 
@@ -167,9 +166,6 @@ test.serial("e2e - simple - prod", async (t) => {
 
 test.serial("e2e - simple - prod - uglyurls", async (t) => {
     const posts = generateItems(10);
-
-    process.env.MODE = "prod";
-
     const domain = "http://example.com";
 
     await render({
@@ -182,6 +178,9 @@ test.serial("e2e - simple - prod - uglyurls", async (t) => {
         locals: {
             posts,
             config: { nav: simpleNav },
+        },
+        env: {
+            mode: "prod",
         },
     });
 
@@ -218,9 +217,6 @@ test.serial("e2e - simple - prod - uglyurls", async (t) => {
 
 test.serial("e2e - simple - prod in subfolder", async (t) => {
     const posts = generateItems(10);
-
-    process.env.MODE = "prod";
-
     const domain = "http://example.com/subfolder";
 
     await render({
@@ -232,6 +228,9 @@ test.serial("e2e - simple - prod in subfolder", async (t) => {
         locals: {
             posts,
             config: { nav: simpleNav },
+        },
+        env: {
+            mode: "prod",
         },
     });
 
