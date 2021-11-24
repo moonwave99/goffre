@@ -1,8 +1,8 @@
-# Goffre Example Website
+# Goffre Examples | Devblog
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5a70fda-1026-432a-96fd-4ea8824ca532/deploy-status)](https://app.netlify.com/sites/goffre-example-page/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5a70fda-1026-432a-96fd-4ea8824ca532/deploy-status)](https://app.netlify.com/sites/goffre-examples-devblog/deploys)
 
-Live demo: https://goffre-example-page.netlify.app/
+Live demo: https://goffre-examples-devblog.netlify.app/
 
 ## Installation
 
