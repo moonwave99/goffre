@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cd ..
+cd ../..
 npm ci
-cd example
+cd example/devblog
 npm ci
 npm run dev:generate posts 20
 npm run dev:generate projects 10
