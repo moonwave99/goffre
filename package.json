@@ -11,7 +11,7 @@
     "homepage": "https://moonwave99.github.io/goffre",
     "type": "module",
     "scripts": {
-        "test": "ava lib/*.test.js e2e/**/*.test.js",
+        "test": "ava **/*.test.js",
         "lint": "npx eslint ./lib --ext .js,.jsx,.ts,.tsx"
     },
     "main": "index.js",
