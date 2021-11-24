@@ -33,7 +33,7 @@ Default paths:
 -   **output folder**: `./dist` - used by `render()`
 -   **handlebars views**: `./src/views` - used by `render()`
 
-See the [example on github][example] for a more advanced use case, and the [documentation][docs] for the complete reference.
+See [examples](#examples) for a more advanced use case, and the [documentation][docs] for the complete reference.
 
 ## Data collecting and rendering are separate steps
 
@@ -107,21 +107,10 @@ The scripts of `package.json` will look more or less like:
 
 Just `npm run dev:client` and `npm run dev:site` in two terminal tabs and you are done. Don't forget to `npm install` the needed dependencies of course!
 
-## Roadmap
+## Examples
 
--   [x] homepage
--   [ ] docs
--   [x] finish basic unit testing
--   [x] e2e tests
--   [ ] add sitemap to example
--   [x] add group projects by tags to example
-
-## Todo
-
--   [x] sitePath -> viewsPath
--   [x] configure log level in goffre option
--   [ ] make nav current class configurable (maybe)
--   [ ] move slug generation strategy to render (maybe)
+-   [devblog][examples-devblog] - a personal website with blog posts and project pages
+-   this page of course
 
 [handlebars]: https://handlebarsjs.com/
 [express-handlebars]: https://www.npmjs.com/package/express-handlebars
@@ -130,6 +119,7 @@ Just `npm run dev:client` and `npm run dev:site` in two terminal tabs and you ar
 [webpack-dev-server]: https://webpack.js.org/configuration/dev-server/
 [http-server]: https://www.npmjs.com/package/http-server
 [nodemon]: https://www.npmjs.com/package/nodemon
-[example]: https://github.com/moonwave99/goffre/tree/main/example
-[docs]: https://moonwave99.github.io/goffre/docs
+[example]: https://github.com/moonwave99/goffre/tree/main/examples/devblog
+[docs]: https://github.com/moonwave99/goffre/tree/main/examples/devblog
 [webpack-config]: https://github.com/moonwave99/goffre/blob/main/homepage/webpack.config.cjs
+[examples-devblog]: https://goffre-examples-devblog.netlify.app/

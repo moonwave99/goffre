@@ -69,6 +69,10 @@ function groupByTech(projects) {
         title: `Projects | ${x.name}`,
         template: "pages/projects/tech",
         description: `These the projects where I used **${x.name}**:`,
+        sitemap: {
+            changefreq: "weekly",
+            priority: 0.5,
+        },
     }));
 
     const blogPages = paginate({
@@ -84,6 +88,10 @@ function groupByTech(projects) {
             template: "pages/blog/list-page",
             posts: items,
             pagination,
+            sitemap: {
+                changefreq: "weekly",
+                priority: 0.5,
+            },
         }));
 
     try {
@@ -99,18 +107,29 @@ function groupByTech(projects) {
                     slug: "index",
                     template: "pages/index",
                     description: json.labels.index.subtitle,
+                    sitemap: {
+                        priority: 1,
+                    },
                 },
                 {
                     title: "Projects",
                     slug: "projects",
                     template: "pages/projects/index",
                     description: json.labels.projects.subtitle,
+                    sitemap: {
+                        changefreq: "monthly",
+                        priority: 0.7,
+                    },
                 },
                 {
                     title: "Blog",
                     slug: "blog",
                     template: "pages/blog/index",
                     description: json.labels.blog.subtitle,
+                    sitemap: {
+                        changefreq: "weekly",
+                        priority: 0.8,
+                    },
                 },
             ],
             locals: {

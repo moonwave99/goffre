@@ -1,5 +1,7 @@
 ---
 title: Contact
+sitemap:
+    priority: 0.8
 ---
 
 Feel free to reach me at hello@example.com or:
