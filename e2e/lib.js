@@ -16,7 +16,7 @@ export const generateItems = (length) =>
         generatePost({ index: index + 1, template: "page" })
     ).map(({ slug, ...page }) => ({
         ...page,
-        slug: getSlug({ slug, page }),
+        slug: getSlug(slug, page),
     }));
 
 export class SuperStatic {
