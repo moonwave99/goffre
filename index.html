@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="generator" content="goffre"/>
-        <meta name="version" content="3d084d4">
+        <meta name="version" content="6749573">
         <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes"/>
         <title>Goffre | Mini static site generator</title>
         <meta name="description" content="Goffre is a minimal static site generator available to the node.js ecosystem." />
@@ -16,7 +16,7 @@
                     <a href="https://moonwave99.github.io/goffre/" class="index current">Home</a>            
                 </li>
                 <li>
-                    <a href="https://moonwave99.github.io/goffre/docs" class="docs">Docs (v0.0.2)</a>            
+                    <a href="https://moonwave99.github.io/goffre/docs" class="docs">Docs (v0.0.3)</a>            
                 </li>
                 <li>
                     <a href="https://github.com/moonwave99/goffre" target="_blank" rel="noopener noreferrer">See on Github</a>            
@@ -53,7 +53,7 @@
 <li><strong>output folder</strong>: <code>./dist</code> - used by <code>render()</code></li>
 <li><strong>handlebars views</strong>: <code>./src/views</code> - used by <code>render()</code></li>
 </ul>
-<p>See the <a href="https://github.com/moonwave99/goffre/tree/main/example">example on github</a> for a more advanced use case, and the <a href="https://moonwave99.github.io/goffre/docs">documentation</a> for the complete reference.</p>
+<p>See <a href="#examples">examples</a> for a more advanced use case, and the <a href="https://github.com/moonwave99/goffre/tree/main/examples/devblog">documentation</a> for the complete reference.</p>
 <h2 id="data-collecting-and-rendering-are-separate-steps">Data collecting and rendering are separate steps</h2>
 <p>This is the key for the maximum flexibility: <code>load()</code> gets all the <code>.md</code> files inside the data folder, and populates its return <code>pages</code> each with a unique <code>slug</code>.</p>
 <p>The markdown body is available in the <code>content</code> key, and the YAML front matter is destructured - the output of <code>load()</code> of the following file:</p>
@@ -104,21 +104,10 @@ const results = await render({
 }
 </code></pre>
 <p>Just <code>npm run dev:client</code> and <code>npm run dev:site</code> in two terminal tabs and you are done. Don&#39;t forget to <code>npm install</code> the needed dependencies of course!</p>
-<h2 id="roadmap">Roadmap</h2>
+<h2 id="examples">Examples</h2>
 <ul>
-<li><input checked="" disabled="" type="checkbox"> homepage</li>
-<li><input disabled="" type="checkbox"> docs</li>
-<li><input checked="" disabled="" type="checkbox"> finish basic unit testing</li>
-<li><input checked="" disabled="" type="checkbox"> e2e tests</li>
-<li><input disabled="" type="checkbox"> add sitemap to example</li>
-<li><input checked="" disabled="" type="checkbox"> add group projects by tags to example</li>
-</ul>
-<h2 id="todo">Todo</h2>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> sitePath -&gt; viewsPath</li>
-<li><input checked="" disabled="" type="checkbox"> configure log level in goffre option</li>
-<li><input disabled="" type="checkbox"> make nav current class configurable (maybe)</li>
-<li><input disabled="" type="checkbox"> move slug generation strategy to render (maybe)</li>
+<li><a href="https://goffre-examples-devblog.netlify.app/">devblog</a> - a personal website with blog posts and project pages</li>
+<li>this page of course</li>
 </ul>
 
     </section>
@@ -128,7 +117,7 @@ const results = await render({
         <footer>
             <p>
                 &copy; 2021 <a href="https://github.com/moonwwave99">Diego Caponera</a>
-                 | rev: <a href="https://github.com/moonwave99/goffre/commit/3d084d4" target="_blank" rel="noopener noreferrer"><code>3d084d4</code></a>
+                 | rev: <a href="https://github.com/moonwave99/goffre/commit/6749573" target="_blank" rel="noopener noreferrer"><code>6749573</code></a>
             </p>
         </footer>        <script src="https://moonwave99.github.io/goffre/bundle.js"></script>
     </body>
