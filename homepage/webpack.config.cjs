@@ -4,6 +4,7 @@ const postcssNormalize = require("postcss-normalize");
 
 const config = {
     entry: [
+        "@babel/polyfill",
         "./src/client/index.js",
         path.join(__dirname, "src", "client", "css", "style.css"),
     ],
@@ -38,6 +39,13 @@ const config = {
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                loader: "babel-loader",
+                resolve: {
+                    fullySpecified: false,
+                },
+            },
             {
                 test: /\.css$/i,
                 use: [
