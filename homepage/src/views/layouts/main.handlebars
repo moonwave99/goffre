@@ -12,10 +12,14 @@
     </head>
     <body class="page-{{slug}}">
         {{> nav}}
-
-        <main>
-        {{{body}}}
-        </main>
+        <div class="container">
+            <aside>
+                <ul></ul>
+            </aside>
+            <main>
+            {{{body}}}
+            </main>
+        </div>
 
         {{> footer}}
         <script src="{{ getAsset "bundle.js" }}"></script>
