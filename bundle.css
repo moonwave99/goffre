@@ -499,6 +499,13 @@ aside ul li {
     margin-bottom: 0.5rem;
 }
 
+aside ul li.from-h3 {
+    margin-left: 1rem;
+}
+aside ul li.from-h4 {
+    margin-left: 1.5rem;
+}
+
 aside ul li:last-child {
     margin-bottom: 0;
 }
@@ -575,15 +582,12 @@ body > footer {
     margin-bottom: 2rem;
 }
 
-.page {
-}
-
-.page.text {
-    /* max-width: 50rem; */
-}
-
 .page > header {
     margin-bottom: 2rem;
+}
+
+.page > header h1 span:last-child {
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .text-body > * {
@@ -704,6 +708,19 @@ body > footer {
     text-overflow: ellipsis;
 }
 
+.page-docs .page.text h4 {
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+}
+
+.page-docs .page.text h4 + p {
+    margin-bottom: 1rem;
+}
+
+.page-docs .page.text p + pre {
+    margin-top: 0rem;
+}
+
 @media screen and (max-width: 1024px) {
     aside {
         display: none;
@@ -724,8 +741,7 @@ body > footer {
 
 @media screen and (max-width: 480px) {
     .page-index main > section h1 {
-        font-size: 2rem;
-        text-align: center;
+        font-size: 2.5rem;
     }
     body {
         position: relative;

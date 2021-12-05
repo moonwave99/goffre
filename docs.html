@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="generator" content="goffre"/>
-        <meta name="version" content="1cc2149">
+        <meta name="version" content="4e389c6">
         <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes"/>
-        <title>Goffre | Documentation</title>
-        <meta name="description" content="## &#x60;load(options)&#x60;" />
+        <title>Documentation</title>
+        <meta name="description" content="## &#x60;async load(options)&#x60;" />
         <link rel="stylesheet" href="https://moonwave99.github.io/goffre/bundle.css"></link>
     </head>
     <body class="page-docs">
@@ -30,10 +30,13 @@
             <main>
             <section class="page text">
     <header>
-        <h1>Goffre | Documentation</h1>
+        <h1>
+            <span>Goffre</span>
+            <span>Documentation</span>
+        </h1>
     </header>
     <section class="text-body">
-        <h2 id="loadoptions"><code>load(options)</code></h2>
+        <h2 id="async-loadoptions"><code>async load(options)</code></h2>
 <p>Loads data from a folder, returns structured information gathered from <code>.md</code> and <code>.json</code> files.</p>
 <pre><code class="language-js">const { json, pages } = await load();
 </code></pre>
@@ -81,12 +84,69 @@
     ]
 }
 </code></pre>
-<p>Available options:</p>
-<h3 id="datapath"><code>dataPath</code></h3>
+<h3 id="available-options">Available options</h3>
+<h4 id="datapath"><code>dataPath</code></h4>
 <p>Path where to look for data.</p>
 <p><strong>Default</strong>: <code>process.cwd() + /data</code>.</p>
-<h2 id="renderoptions"><code>render(options)</code></h2>
+<h2 id="async-renderoptions"><code>async render(options)</code></h2>
 <p>Generates the <code>.html</code> files.</p>
+<h3 id="available-options-1">Available options</h3>
+<h4 id="pages"><code>pages</code></h4>
+<p>An array of pages, ideally parsed via the <code>load()</code> method.</p>
+<p>The only constraint is to contain a unique <code>slug</code> key, like:</p>
+<pre><code class="language-js">[
+    {
+        title: &#39;This is a blog post&#39;,
+        slug: &quot;blog/01-this-is-a-blog-post&quot;,
+        content: ...
+    },
+    {
+        title: &#39;This is another blog post&#39;,
+        slug: &quot;blog/02-this-is-another-blog-post&quot;,
+        content: ...
+    },
+    ...
+]
+</code></pre>
+<h4 id="viewspath"><code>viewsPath</code></h4>
+<p>The folder containing the handlebars views.</p>
+<p><strong>Default</strong>: <code>path.join(process.cwd(), &quot;src&quot;, &quot;views&quot;)</code>.</p>
+<h4 id="buildpath"><code>buildPath</code></h4>
+<p>The folder that will contain the HTML output.</p>
+<p><strong>Default</strong>: <code>path.join(process.cwd(), &quot;dist&quot;)</code>.</p>
+<h4 id="domain"><code>domain</code></h4>
+<p>The website domain, used in the handlebars helpers for generating URLs.</p>
+<h4 id="uglyurls"><code>uglyUrls</code></h4>
+<p>If <code>true</code>, appends <code>.html</code> to generated URLs.</p>
+<p><strong>Default</strong>: <code>false</code>.</p>
+<h4 id="locals"><code>locals</code></h4>
+<p>An object that will be merged into <code>apps.locals</code> and be available to all handlebars templates.</p>
+<h4 id="markdown"><code>markdown</code></h4>
+<p>Overrides the <a href="https://github.com/markedjs/marked">default markdown configuration</a>, e.g.:</p>
+<pre><code class="language-js">render({
+    ...
+    markdown: {
+        renderer: {
+            image: (href, title, text) =&gt;
+                `&lt;img class=&quot;lazy&quot; data-src=&quot;${href}&quot; alt=&quot;${text}&quot;/&gt;`,
+        },
+    }
+})
+</code></pre>
+<h4 id="handlebars"><code>handlebars</code></h4>
+<p>Contains the handlebars configurations and helpers, e.g.:</p>
+<pre><code class="language-js">render({
+    ...
+    handlebars: {
+        helpers: {
+            formatDate: (date) =&gt; date.toLocaleDateString(),
+        },
+    }
+})
+</code></pre>
+<h4 id="sitemap"><code>sitemap</code></h4>
+<p>Contains the sitemap configuration.</p>
+<p><strong>Default</strong>: <code>{ generate: false, template: &#39;sitemap&#39; }</code>.</p>
 
     </section>
 </section>
@@ -96,7 +156,7 @@
         <footer>
             <p>
                 &copy; 2021 <a href="https://github.com/moonwwave99">Diego Caponera</a>
-                 | rev: <a href="https://github.com/moonwave99/goffre/commit/1cc2149" target="_blank" rel="noopener noreferrer"><code>1cc2149</code></a>
+                 | rev: <a href="https://github.com/moonwave99/goffre/commit/4e389c6" target="_blank" rel="noopener noreferrer"><code>4e389c6</code></a>
             </p>
         </footer>        <script src="https://moonwave99.github.io/goffre/bundle.js"></script>
     </body>
