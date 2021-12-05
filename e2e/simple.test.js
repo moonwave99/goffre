@@ -6,13 +6,13 @@ import { render, getSlug } from "../lib/goffre.js";
 
 const __dirname = dirname(import.meta);
 
-const buildPath = path.join(__dirname, "dist");
+const buildPath = path.join(__dirname, "simple", "dist");
 const viewsPath = path.join(__dirname, "views");
 
 test.beforeEach(async () => await clean(buildPath));
 test.afterEach(async () => await clean(buildPath));
 
-const simplePages = [
+const pages = [
     {
         title: "Home",
         slug: "index",
@@ -26,7 +26,7 @@ const simplePages = [
     },
 ];
 
-const simpleNav = [
+const nav = [
     {
         title: "Home",
         slug: "index",
@@ -45,10 +45,10 @@ test.serial("e2e - simple", async (t) => {
         buildPath,
         viewsPath,
         logLevel: "silent",
-        pages: [...simplePages, ...posts],
+        pages: [...pages, ...posts],
         locals: {
             posts,
-            config: { nav: simpleNav },
+            config: { nav },
         },
     });
 
@@ -56,14 +56,14 @@ test.serial("e2e - simple", async (t) => {
     await ss.load();
 
     // total page count
-    t.is(ss.pageCount(), posts.length + simplePages.length);
+    t.is(ss.pageCount(), posts.length + pages.length);
 
     // link generation
     t.is(ss.getPage("index.html").$("nav .index").attr("href"), "/");
     t.is(ss.getPage("index.html").$("nav .blog").attr("href"), "/blog");
 
     // simple pages: existence, right nav class
-    simplePages.forEach((page) => {
+    pages.forEach((page) => {
         const fileName = `${getSlug(page.slug, page)}.html`;
         t.true(ss.hasPage(fileName));
         t.is(ss.getPage(fileName).$("nav .current").html(), page.title);
@@ -85,10 +85,10 @@ test.serial("e2e - simple - uglyUrls", async (t) => {
         viewsPath,
         uglyUrls: true,
         logLevel: "silent",
-        pages: [...simplePages, ...posts],
+        pages: [...pages, ...posts],
         locals: {
             posts,
-            config: { nav: simpleNav },
+            config: { nav },
         },
     });
 
@@ -96,14 +96,14 @@ test.serial("e2e - simple - uglyUrls", async (t) => {
     await ss.load();
 
     // total page count
-    t.is(ss.pageCount(), posts.length + simplePages.length);
+    t.is(ss.pageCount(), posts.length + pages.length);
 
     // link generation
     t.is(ss.getPage("index.html").$("nav .index").attr("href"), "/index.html");
     t.is(ss.getPage("index.html").$("nav .blog").attr("href"), "/blog.html");
 
     // simple pages: existence, right nav class
-    simplePages.forEach((page) => {
+    pages.forEach((page) => {
         const fileName = `${getSlug(page.slug, page)}.html`;
         t.true(ss.hasPage(fileName));
         t.is(ss.getPage(fileName).$("nav .current").html(), page.title);
@@ -126,10 +126,10 @@ test.serial("e2e - simple - prod", async (t) => {
         viewsPath,
         logLevel: "silent",
         domain,
-        pages: [...simplePages, ...posts],
+        pages: [...pages, ...posts],
         locals: {
             posts,
-            config: { nav: simpleNav },
+            config: { nav },
         },
         env: {
             mode: "prod",
@@ -140,7 +140,7 @@ test.serial("e2e - simple - prod", async (t) => {
     await ss.load();
 
     // total page count
-    t.is(ss.pageCount(), posts.length + simplePages.length);
+    t.is(ss.pageCount(), posts.length + pages.length);
 
     // link generation
     t.is(ss.getPage("index.html").$("nav .index").attr("href"), `${domain}/`);
@@ -150,7 +150,7 @@ test.serial("e2e - simple - prod", async (t) => {
     );
 
     // simple pages: existence, right nav class
-    simplePages.forEach((page) => {
+    pages.forEach((page) => {
         const fileName = `${getSlug(page.slug, page)}.html`;
         t.true(ss.hasPage(fileName));
         t.is(ss.getPage(fileName).$("nav .current").html(), page.title);
@@ -174,10 +174,10 @@ test.serial("e2e - simple - prod - uglyurls", async (t) => {
         uglyUrls: true,
         logLevel: "silent",
         domain,
-        pages: [...simplePages, ...posts],
+        pages: [...pages, ...posts],
         locals: {
             posts,
-            config: { nav: simpleNav },
+            config: { nav },
         },
         env: {
             mode: "prod",
@@ -188,7 +188,7 @@ test.serial("e2e - simple - prod - uglyurls", async (t) => {
     await ss.load();
 
     // total page count
-    t.is(ss.pageCount(), posts.length + simplePages.length);
+    t.is(ss.pageCount(), posts.length + pages.length);
 
     // link generation
     t.is(
@@ -201,7 +201,7 @@ test.serial("e2e - simple - prod - uglyurls", async (t) => {
     );
 
     // simple pages: existence, right nav class
-    simplePages.forEach((page) => {
+    pages.forEach((page) => {
         const fileName = `${getSlug(page.slug, page)}.html`;
         t.true(ss.hasPage(fileName));
         t.is(ss.getPage(fileName).$("nav .current").html(), page.title);
@@ -224,10 +224,10 @@ test.serial("e2e - simple - prod in subfolder", async (t) => {
         viewsPath,
         logLevel: "silent",
         domain,
-        pages: [...simplePages, ...posts],
+        pages: [...pages, ...posts],
         locals: {
             posts,
-            config: { nav: simpleNav },
+            config: { nav },
         },
         env: {
             mode: "prod",
@@ -238,7 +238,7 @@ test.serial("e2e - simple - prod in subfolder", async (t) => {
     await ss.load();
 
     // total page count
-    t.is(ss.pageCount(), posts.length + simplePages.length);
+    t.is(ss.pageCount(), posts.length + pages.length);
 
     // link generation
     t.is(ss.getPage("index.html").$("nav .index").attr("href"), `${domain}/`);
@@ -248,7 +248,7 @@ test.serial("e2e - simple - prod in subfolder", async (t) => {
     );
 
     // simple pages: existence, right nav class
-    simplePages.forEach((page) => {
+    pages.forEach((page) => {
         const fileName = `${getSlug(page.slug, page)}.html`;
         t.true(ss.hasPage(fileName));
         t.is(ss.getPage(fileName).$("nav .current").html(), page.title);
