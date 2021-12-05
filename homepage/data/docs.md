@@ -1,8 +1,8 @@
 ---
-title: Goffre | Documentation
+title: Documentation
 ---
 
-## `load(options)`
+## `async load(options)`
 
 Loads data from a folder, returns structured information gathered from `.md` and `.json` files.
 
@@ -59,14 +59,103 @@ Will be parsed as:
 }
 ```
 
-Available options:
+### Available options
 
-### `dataPath`
+#### `dataPath`
 
 Path where to look for data.
 
 **Default**: `process.cwd() + /data`.
 
-## `render(options)`
+## `async render(options)`
 
 Generates the `.html` files.
+
+### Available options
+
+#### `pages`
+
+An array of pages, ideally parsed via the `load()` method.
+
+The only constraint is to contain a unique `slug` key, like:
+
+```js
+[
+    {
+        title: 'This is a blog post',
+        slug: "blog/01-this-is-a-blog-post",
+        content: ...
+    },
+    {
+        title: 'This is another blog post',
+        slug: "blog/02-this-is-another-blog-post",
+        content: ...
+    },
+    ...
+]
+```
+
+#### `viewsPath`
+
+The folder containing the handlebars views.
+
+**Default**: `path.join(process.cwd(), "src", "views")`.
+
+#### `buildPath`
+
+The folder that will contain the HTML output.
+
+**Default**: `path.join(process.cwd(), "dist")`.
+
+#### `domain`
+
+The website domain, used in the handlebars helpers for generating URLs.
+
+#### `uglyUrls`
+
+If `true`, appends `.html` to generated URLs.
+
+**Default**: `false`.
+
+#### `locals`
+
+An object that will be merged into `apps.locals` and be available to all handlebars templates.
+
+#### `markdown`
+
+Overrides the [default markdown configuration][marked], e.g.:
+
+```js
+render({
+    ...
+    markdown: {
+        renderer: {
+            image: (href, title, text) =>
+                `<img class="lazy" data-src="${href}" alt="${text}"/>`,
+        },
+    }
+})
+```
+
+#### `handlebars`
+
+Contains the handlebars configurations and helpers, e.g.:
+
+```js
+render({
+    ...
+    handlebars: {
+        helpers: {
+            formatDate: (date) => date.toLocaleDateString(),
+        },
+    }
+})
+```
+
+#### `sitemap`
+
+Contains the sitemap configuration.
+
+**Default**: `{ generate: false, template: 'sitemap' }`.
+
+[marked]: https://github.com/markedjs/marked

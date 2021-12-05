@@ -21,7 +21,9 @@ function initOutline() {
     );
 
     $titles.forEach((el) => {
-        $aside.innerHTML += `<li><a href="#${el.id}">${el.innerText}</a></li>`;
+        $aside.innerHTML += `<li class="from-${el.tagName.toLowerCase()}"><a href="#${
+            el.id
+        }">${el.innerText}</a></li>`;
         observer.observe(el);
     });
 
@@ -33,7 +35,6 @@ function initOutline() {
         const $target = document.getElementById(
             event.target.href.split("#")[1]
         );
-        console.log($target);
         if (!$target) {
             return;
         }
@@ -42,6 +43,7 @@ function initOutline() {
             behavior: "smooth",
             block: "center",
         });
+        history.replaceState(null, null, event.target.href);
     });
 }
 
