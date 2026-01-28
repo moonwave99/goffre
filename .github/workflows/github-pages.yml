@@ -22,7 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build website
-        run: npm run build
+        run: cd homepage && npm ci
+          cd homepage && npm run build:client
+          MODE=prod cd homepage && npm run build:site
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
