@@ -1,5 +1,5 @@
 {
-  "name": "goffre",
+  "name": "@moonwave99/goffre",
   "version": "0.0.4",
   "description": "Mini static site generator",
   "author": {
@@ -7,7 +7,10 @@
     "email": "hello@diegocaponera.com",
     "url": "https://github.com/moonwwave99"
   },
-  "repository": "https://github.com/moonwave99/goffre",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moonwave99/goffre.git"
+  },
   "homepage": "https://moonwave99.github.io/goffre",
   "type": "module",
   "scripts": {
