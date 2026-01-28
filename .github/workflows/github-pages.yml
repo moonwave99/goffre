@@ -23,9 +23,10 @@ jobs:
         run: npm ci
       - name: Build website
         run: |
-          cd homepage && npm ci
-          cd homepage && npm run build:client
-          MODE=prod cd homepage && npm run build:site
+          cd homepage
+          npm ci
+          npm run build:client
+          MODE=prod npm run build:site
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
