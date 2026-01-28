@@ -3,6 +3,16 @@
         <h1>{{title}}</h1>
     </header>
     <section class="text-body">
+        {{#if blocks.length}}
+        {{#each blocks}}
+        <div class="block">
+            {{{ . }}}
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="no-block">
         {{{content}}}
+        </div>
+        {{/if}}
     </section>
 </section>

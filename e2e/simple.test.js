@@ -255,3 +255,61 @@ test.serial("e2e - simple - prod in subfolder", async (t) => {
     t.is(ss.getPage(fileName).$("h1").html(), post.title);
   });
 });
+
+test.serial("e2e - no blocks", async (t) => {
+  const posts = generateItems(3);
+
+  await render({
+    buildPath,
+    viewsPath,
+    logLevel: "silent",
+    pages: [...pages, ...posts],
+    locals: {
+      posts,
+      config: { nav },
+    },
+  });
+
+  const ss = new SuperStatic({ buildPath });
+  await ss.load();
+
+  // posts: blocks, right content
+  posts.forEach((post) => {
+    const fileName = `${getSlug(post.slug, post)}.html`;
+    t.true(ss.hasPage(fileName));
+    t.is(ss.getPage(fileName).$(".block").length, 0);
+    t.is(ss.getPage(fileName).$(".no-block").length, 1);
+  });
+});
+
+test.serial("e2e - blocks", async (t) => {
+  const posts = generateItems(3, true);
+
+  await render({
+    buildPath,
+    viewsPath,
+    logLevel: "silent",
+    pages: [...pages, ...posts],
+    locals: {
+      posts,
+      config: { nav },
+    },
+  });
+
+  const ss = new SuperStatic({ buildPath });
+  await ss.load();
+
+  // posts: blocks, right content
+  posts.forEach((post) => {
+    const fileName = `${getSlug(post.slug, post)}.html`;
+    t.true(ss.hasPage(fileName));
+    const $ = ss.getPage(fileName).$;
+
+    $(".block").each((index, el) => {
+      t.is($(el).find("h2").text(), `Block ${index + 1}`);
+      t.is($(el).find("p").length, 1);
+    });
+    t.is($(".block").length, 3);
+    t.is($(".no-block").length, 0);
+  });
+});

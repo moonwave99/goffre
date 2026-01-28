@@ -1,6 +1,6 @@
 {
   "name": "@moonwave99/goffre",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Mini static site generator",
   "author": {
     "name": "Diego Caponera",
