@@ -3,6 +3,8 @@ coverage/
 node_modules/
 *.log
 e2e/**/dist
+dist
+.tsimp
 
 # OS generated files
 .DS_Store

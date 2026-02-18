@@ -14,19 +14,25 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: 22
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm i
+      - name: Build goffre
+        run: pnpm build
       - name: Build website
         run: |
           cd homepage
-          npm ci
-          npm run build:client
-          MODE=prod npm run build:site
+          pnpm i
+          pnpm run build:client
+          MODE=prod pnpm run build:site
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3

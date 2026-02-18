@@ -1,14 +1,14 @@
 import test from "ava";
-import { generatePost } from "./generator.js";
-import { paginate, getTemplate, getSorter } from "./goffre.js";
+import { generatePost } from "./generator";
+import { paginate, getTemplate, getSorter, type Page } from "./goffre";
 
-const generateItems = (length) =>
+const generateItems = (length: number) =>
   Array.from({ length }, (_, index) => generatePost({ index: index + 1 }));
 
 test("getTemplate - pick passed template", (t) => {
   const template = getTemplate({
     templates: ["my-template.handlebars"],
-    page: { template: "my-template" },
+    page: { template: "my-template" } as Page,
   });
   t.is(template, "my-template");
 });
@@ -23,14 +23,14 @@ test("getTemplate - try by slug", (t) => {
 
 test("getTemplate - fallback", (t) => {
   const template = getTemplate({
-    page: {},
+    page: {} as Page,
     templates: ["yo", "ye", "slug"],
   });
   t.is(template, "_default");
 });
 
 test("paginate", (t) => {
-  const collection = generateItems(21);
+  const collection = generateItems(21) as Page[];
   const pages = paginate({ collection, size: 4 });
   t.is(pages.length, 6);
   t.is(pages[pages.length - 1].items.length, 1);

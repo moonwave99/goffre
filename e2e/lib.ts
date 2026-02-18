@@ -1,17 +1,16 @@
 import path from "path";
 import fs from "fs/promises";
-import rimraf from "rimraf";
-import cheerio from "cheerio";
+import { rimraf } from "rimraf";
+import { load } from "cheerio";
 import { globby } from "globby";
 import { generatePost } from "../lib/generator.js";
-import { getSlug } from "../index.js";
+import { getSlug } from "../lib/goffre";
 
 const { readFile } = fs;
 
-export const clean = (pathToClean) =>
-  new Promise((resolve) => rimraf(pathToClean, resolve));
+export const clean = rimraf;
 
-export const generateItems = (length, withBlocks = false) =>
+export const generateItems = (length: number, withBlocks = false) =>
   Array.from({ length }, (_, index) =>
     generatePost({ index: index + 1, template: "page", withBlocks }),
   ).map(({ slug, ...page }) => ({
@@ -19,8 +18,15 @@ export const generateItems = (length, withBlocks = false) =>
     slug: getSlug(slug, page),
   }));
 
+type SuperStaticOptions = {
+  buildPath: string;
+};
+
 export class SuperStatic {
-  constructor({ buildPath }) {
+  private buildPath: string;
+  private pages: Record<string, { $: ReturnType<typeof load> }>;
+
+  constructor({ buildPath }: SuperStaticOptions) {
     this.buildPath = buildPath;
     this.pages = {};
   }
@@ -30,9 +36,7 @@ export class SuperStatic {
       files.map(
         async (x) =>
           (this.pages[x] = {
-            $: cheerio.load(
-              await readFile(path.join(this.buildPath, x), "utf8"),
-            ),
+            $: load(await readFile(path.join(this.buildPath, x), "utf8")),
           }),
       ),
     );
@@ -40,13 +44,13 @@ export class SuperStatic {
   pageCount() {
     return Object.keys(this.pages).length;
   }
-  getPage(page) {
+  getPage(page: string) {
     return this.pages[page];
   }
   getPages() {
     return this.pages;
   }
-  hasPage(page) {
+  hasPage(page: string) {
     return !!this.pages[page];
   }
 }

@@ -1,8 +1,8 @@
 import test from "ava";
 import path from "path";
 import { dirname } from "dirname-filename-esm";
-import { generateItems, clean, SuperStatic } from "./lib.js";
-import { render, getSlug } from "../lib/goffre.js";
+import { generateItems, clean, SuperStatic } from "./lib";
+import { render, getSlug } from "../lib/goffre";
 
 const __dirname = dirname(import.meta);
 
