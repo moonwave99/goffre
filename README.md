@@ -7,31 +7,31 @@ It uses [handlebars][handlebars] as templating system and [markdown + frontmatte
 ## Installation
 
 ```bash
-$ npm install goffre --save
+npm install @moonwave99/goffre --save
 ```
 
 ## Basic Usage
 
 ```js
-import { load, render } from "goffre";
+import { load, render } from "@moonwave99/goffre";
 
 (async () => {
-    const { pages } = await load();
+  const { pages } = await load();
 
-    try {
-        const results = await render({ pages });
-        console.log(`Generated ${results.length} pages`);
-    } catch (error) {
-        console.log("Error generating site", error);
-    }
+  try {
+    const results = await render({ pages });
+    console.log(`Generated ${results.length} pages`);
+  } catch (error) {
+    console.log("Error generating site", error);
+  }
 })();
 ```
 
 Default paths:
 
--   **markdown files**: `./data` - used by `load()`
--   **output folder**: `./dist` - used by `render()`
--   **handlebars views**: `./src/views` - used by `render()`
+- **markdown files**: `./data` - used by `load()`
+- **output folder**: `./dist` - used by `render()`
+- **handlebars views**: `./src/views` - used by `render()`
 
 See [examples](#examples) for a more advanced use case, and the [documentation][docs] for the complete reference.
 
@@ -66,18 +66,18 @@ The `render()` method writes then every incoming page to `{page.slug}.html` - yo
 ```js
 const { pages } = await load({ dataPath });
 const results = await render({
-    buildPath,
-    sitePath,
-    pages: [
-        ...pages,
-        {
-            title: "Goffre | Mini static site generator",
-            description:
-                "Goffre is a minimal static site generator available to the node.js ecosystem.",
-            slug: "index",
-            content: await readFile(path.join("..", "README.md"), "utf8"),
-        },
-    ],
+  buildPath,
+  sitePath,
+  pages: [
+    ...pages,
+    {
+      title: "Goffre | Mini static site generator",
+      description:
+        "Goffre is a minimal static site generator available to the node.js ecosystem.",
+      slug: "index",
+      content: await readFile(path.join("..", "README.md"), "utf8"),
+    },
+  ],
 });
 ```
 
@@ -97,11 +97,11 @@ The scripts of `package.json` will look more or less like:
 
 ```json
 {
-    "clean": "rm -rf dist",
-    "dev:client": "webpack serve --mode development",
-    "dev:site": "nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/views",
-    "build:client": "webpack --mode production",
-    "build:site": "node index.js"
+  "clean": "rm -rf dist",
+  "dev:client": "webpack serve --mode development",
+  "dev:site": "nodemon -e js,json,md,handlebars --watch index.js --watch data --watch src/views",
+  "build:client": "webpack --mode production",
+  "build:site": "node index.js"
 }
 ```
 
@@ -109,17 +109,15 @@ Just `npm run dev:client` and `npm run dev:site` in two terminal tabs and you ar
 
 ## Examples
 
--   [devblog][examples-devblog] - a personal website with blog posts and project pages
--   this page of course
+- [devblog][examples-devblog] - a personal website with blog posts and project pages
+- this page of course
 
 [handlebars]: https://handlebarsjs.com/
-[express-handlebars]: https://www.npmjs.com/package/express-handlebars
 [mdfront]: https://www.google.com/search?q=markdown+frontmatter
 [webpack]: https://webpack.js.org/
 [webpack-dev-server]: https://webpack.js.org/configuration/dev-server/
 [http-server]: https://www.npmjs.com/package/http-server
 [nodemon]: https://www.npmjs.com/package/nodemon
-[example]: https://github.com/moonwave99/goffre/tree/main/examples/devblog
 [docs]: https://github.com/moonwave99/goffre/tree/main/examples/devblog
 [webpack-config]: https://github.com/moonwave99/goffre/blob/main/homepage/webpack.config.cjs
 [examples-devblog]: https://goffre-examples-devblog.netlify.app/
