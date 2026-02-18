@@ -8,7 +8,9 @@ import express, { type Express } from "express";
 import { engine } from "express-handlebars";
 import chalk from "chalk";
 import slugify from "slugify";
-import * as defaultHelpers from "./helpers.js";
+import * as defaultHelpers from "./helpers";
+
+export const helpers = defaultHelpers;
 
 const require = createRequire(import.meta.url);
 const { readFile, outputFile } = fs;
