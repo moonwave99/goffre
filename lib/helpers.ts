@@ -1,26 +1,46 @@
-import { getSorter, getSlug } from "./goffre.js";
+import { getSorter, getSlug, type Page } from "./goffre";
 import { marked } from "marked";
+import { type HelperOptions } from "handlebars";
 
-export const markdown = (text) => marked(text);
+type Context = {
+  data: {
+    root: {
+      options?: {
+        domain?: string;
+        env?: {
+          mode?: string;
+        };
+      };
+    };
+  };
+};
 
-export const getParamLink = (url, options) => {
+type HelperContext = Context & Omit<HelperOptions, "fn" | "inverse">;
+type BlockContext = Context & HelperOptions;
+
+export const markdown = (text: string) => marked(text);
+
+export const getParamLink = (url: string, options: HelperContext) => {
   const output = getSlug(url, options.hash);
   return getAsset(output, options);
 };
 
-export const getAsset = (asset, context) => {
+export const getAsset = (
+  asset: string,
+  context: Omit<HelperContext, "hash">,
+) => {
   const { options, env } = context.data.root;
   return env.mode === "prod" && options.domain
     ? `${options.domain}${asset.startsWith("/") ? "" : "/"}${asset}`
     : asset;
 };
 
-export const getSitemapLink = (page, context) => {
+export const getSitemapLink = (page: Page, context: HelperContext) => {
   const { options } = context.data.root;
   return `${options.domain}${getLink(page, context)}`;
 };
 
-export const getLink = (page, context) => {
+export const getLink = (page: Page, context: HelperContext) => {
   const base =
     page.link || `${page.slug.startsWith("/") ? "" : "/"}${page.slug}`;
   const { uglyUrls } = context.data.root.options;
@@ -30,23 +50,23 @@ export const getLink = (page, context) => {
   return getAsset(base.replace(/^\/index/, "/"), context);
 };
 
-export const getNavClass = ({ slug }, currentPage) => {
+export const getNavClass = ({ slug }: Page, currentPage: Page) => {
   const cleanSlug = slug && slug[0] === "/" ? slug.slice(1) : slug;
   return currentPage.slug.startsWith(cleanSlug)
     ? `${cleanSlug} current`
     : cleanSlug;
 };
 
-export const list = (context, options) => {
+export const list = (context: Page[], options: BlockContext) => {
   const offset = parseInt(options.hash.offset, 10) || 0;
   const limit = parseInt(options.hash.limit, 10) || 100;
   const sortBy = options.hash.sortBy || "slug";
   const order = options.hash.order || "asc";
 
   let output = "";
-  let i, j;
+  let i;
 
-  const data = [...context].sort(getSorter({ sortBy, order }));
+  const data = context.toSorted(getSorter({ sortBy, order }));
 
   if (offset < 0) {
     i = -offset < data.length ? data.length - -offset : 0;
@@ -54,18 +74,21 @@ export const list = (context, options) => {
     i = offset < data.length ? offset : 0;
   }
 
-  j = limit + i < data.length ? limit + i : data.length;
+  const j = limit + i < data.length ? limit + i : data.length;
 
-  for (i, j; i < j; i++) {
+  for (; i < j; i++) {
     output += options.fn(data[i]);
   }
 
   return output;
 };
 
-export const nextItem = (context, options) => {
+export const nextItem = (
+  context: Page,
+  options: Pick<BlockContext, "hash" | "fn">,
+) => {
   const { list } = options.hash;
-  const index = list.findIndex((x) => x.slug === context.slug);
+  const index = list.findIndex((x: Page) => x.slug === context.slug);
   const next = list[index + 1];
   if (!next) {
     return;
@@ -73,9 +96,12 @@ export const nextItem = (context, options) => {
   return options.fn(next);
 };
 
-export const prevItem = (context, options) => {
+export const prevItem = (
+  context: Page,
+  options: Pick<BlockContext, "hash" | "fn">,
+) => {
   const { list } = options.hash;
-  const index = list.findIndex((x) => x.slug === context.slug);
+  const index = list.findIndex((x: Page) => x.slug === context.slug);
   const prev = list[index - 1];
   if (!prev) {
     return;

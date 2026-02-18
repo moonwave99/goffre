@@ -1,10 +1,10 @@
 import path from "path";
 import { globby } from "globby";
-import { marked } from "marked";
+import { marked, type MarkedExtension, RendererObject } from "marked";
 import matter from "gray-matter";
 import { createRequire } from "module";
 import fs from "fs-extra";
-import express from "express";
+import express, { type Express } from "express";
 import { engine } from "express-handlebars";
 import chalk from "chalk";
 import slugify from "slugify";
@@ -19,10 +19,10 @@ const DEFAULT_BUILD_PATH = path.join(process.cwd(), "dist");
 const MAX_SLUG_LOG_LENGTH = 40;
 const DEFAULT_BLOCK_SEPARATOR = "<!-- block -->";
 
-function log() {
+function log(...args: unknown[]) {
   console.log.apply(
     null,
-    ["[goffre]", ...arguments].map((x) => chalk.cyan(x)),
+    ["[goffre]", ...args].map((x) => chalk.cyan(x)),
   );
 }
 
@@ -32,45 +32,73 @@ function getEnv() {
   };
 }
 
-function stringify(token) {
+export type Page = {
+  slug: string;
+  link?: string;
+  template?: string;
+  layout?: string | null;
+  content?: string;
+  extname?: string;
+};
+
+function stringify(token: unknown) {
   if (token instanceof Date) {
     return token.toISOString().split("T")[0];
   }
-  return token;
+  return `${token}`;
 }
 
-export function getSlug(slug, params) {
+export function getSlug(slug: string, params: Record<string, unknown>) {
   return slug
     .split("/")
-    .reduce(
-      (memo, x) =>
-        !x.startsWith(":")
-          ? [...memo, x]
-          : [
-              ...memo,
-              slugify(stringify(params[x.slice(1)]), {
-                lower: true,
-                strict: true,
-              }),
-            ],
-      [],
-    )
+    .reduce((memo, x) => {
+      if (!x.startsWith(":")) {
+        return [...memo, x];
+      }
+      const param = x.slice(1);
+      const value = params[param];
+      if (!value) {
+        throw new Error(`No value found for parameter: ${param}`);
+      }
+      return [
+        ...memo,
+        slugify(stringify(value), {
+          lower: true,
+          strict: true,
+        }),
+      ];
+    }, [] as string[])
     .join("/");
 }
+
+type GetTemplateParams = {
+  page: Page;
+  templates: string[];
+  defaultTemplate?: string;
+};
 
 export function getTemplate({
   page,
   templates = [],
   defaultTemplate = "_default",
-}) {
+}: GetTemplateParams) {
   if (templates.find((x) => x === `${page.template}.handlebars`)) {
-    return page.template;
+    return page.template as string;
   }
   if (templates.find((x) => x.startsWith(page.slug))) {
     return page.slug;
   }
   return defaultTemplate;
 }
+
+type RenderPageParams = Page & {
+  app: Express;
+  templates: string[];
+  buildPath: string;
+  maxSlugLogLength?: number;
+  blockSeparator?: string;
+  pages?: Page[];
+};
 
 function renderPage({
   app,
@@ -79,7 +107,7 @@ function renderPage({
   maxSlugLogLength,
   blockSeparator,
   ...page
-}) {
+}: RenderPageParams) {
   return new Promise((resolve, reject) => {
     const template = getTemplate({ page, templates });
 
@@ -89,7 +117,7 @@ function renderPage({
       case "verbose":
         log(
           `Generating ${chalk.yellow(
-            page.slug.padEnd(maxSlugLogLength, " "),
+            page.slug.padEnd(maxSlugLogLength || MAX_SLUG_LOG_LENGTH, " "),
           )} with template ${chalk.green(template)}...`,
         );
         break;
@@ -104,7 +132,10 @@ function renderPage({
         ...page,
         layout: typeof page.layout === "undefined" ? "main" : page.layout,
         content: page.content ? marked.parse(page.content) : null,
-        blocks: getPageBlocks(page.content, blockSeparator),
+        blocks: getPageBlocks(
+          page.content,
+          blockSeparator || DEFAULT_BLOCK_SEPARATOR,
+        ),
       },
       async (error, html) => {
         if (error) {
@@ -122,7 +153,7 @@ function renderPage({
   });
 }
 
-function getPageBlocks(content = "", separator) {
+function getPageBlocks(content = "", separator: string) {
   if (!content.includes(separator)) {
     return [];
   }
@@ -130,14 +161,18 @@ function getPageBlocks(content = "", separator) {
   return blocks.filter(Boolean);
 }
 
-export async function load({ dataPath } = {}) {
+type LoadParams = {
+  dataPath?: string;
+};
+
+export async function load({ dataPath }: LoadParams = {}) {
   return {
     json: await loadJSON(dataPath || DEFAULT_DATA_PATH),
     pages: await loadMarkdown(dataPath || DEFAULT_DATA_PATH),
   };
 }
 
-export async function loadJSON(cwd) {
+export async function loadJSON(cwd: string) {
   const files = await globby("**/*.json", { cwd });
   return files.reduce(
     (memo, x) => ({
@@ -148,17 +183,13 @@ export async function loadJSON(cwd) {
   );
 }
 
-function excerpt(file) {
-  file.excerpt = file.content.split("\n")[1];
-}
-
-export async function loadMarkdown(cwd) {
+export async function loadMarkdown(cwd: string) {
   const files = await globby("**/*.md", { cwd });
   return Promise.all(
     files.map(async (fileName) => {
       const fullPath = path.join(cwd, fileName);
       const contents = await readFile(fullPath, "utf-8");
-      const parsed = matter(contents, { excerpt });
+      const parsed = matter(contents, { excerpt: true });
       const outputFileName = fileName.replace(".md", "");
       const slug = !parsed.data.slug
         ? outputFileName
@@ -174,17 +205,51 @@ export async function loadMarkdown(cwd) {
   );
 }
 
-export const getSorter =
-  ({ sortBy, order }) =>
-  (a, b) => {
+type GetSorterParams = {
+  sortBy: string;
+  order: "asc" | "desc";
+};
+
+export function getSorter<T extends Record<string, unknown>>({
+  sortBy,
+  order,
+}: GetSorterParams) {
+  return (a: T, b: T) => {
     let output;
-    if (a[sortBy] instanceof Date) {
-      output = new Date(a[sortBy]) - new Date(b[sortBy]);
+    const valA = a[sortBy];
+    const valB = b[sortBy];
+    if (valA instanceof Date && valB instanceof Date) {
+      output = Number(new Date(valA)) - Number(new Date(valB));
     } else {
-      output = a[sortBy] - b[sortBy];
+      output = Number(valA) - Number(valB);
     }
     return order === "desc" ? -output : output;
   };
+}
+
+type RenderParams = {
+  pages: Page[];
+  viewsPath?: string;
+  buildPath?: string;
+  blockSeparator?: string;
+  domain?: string;
+  uglyUrls?: boolean;
+  logLevel?: "silent" | "verbose" | "normal";
+  locals: Record<string, unknown>;
+  sitemap?: {
+    generate?: boolean;
+    template?: string;
+  };
+  env?: Record<string, unknown>;
+  handlebars?: {
+    extname?: string;
+    helpers?: Record<string, unknown>;
+  };
+  markdown?: {
+    middleware?: (MarkedExtension | (() => MarkedExtension))[];
+    renderer?: RendererObject;
+  };
+};
 
 export async function render({
   pages,
@@ -199,7 +264,7 @@ export async function render({
   handlebars = {},
   sitemap = {},
   env = {},
-}) {
+}: RenderParams) {
   const extname = handlebars.extname || ".handlebars";
   const app = express();
   app.engine(
@@ -279,7 +344,7 @@ export async function render({
       template: sitemap.template || "sitemap",
       extname: ".xml",
       layout: null,
-      pages: results,
+      pages: results as Page[],
       buildPath,
       app,
       templates,
@@ -289,15 +354,32 @@ export async function render({
   return results;
 }
 
-export function paginate({
+type PaginateParams<T extends Page> = {
+  collection: T[];
+  size?: number;
+  sortBy?: keyof T;
+  order?: "asc" | "desc";
+};
+
+type PaginatedResult<T extends Page> = {
+  pagination: {
+    page: number;
+    prev: number | null;
+    next: number | null;
+    total: number;
+  };
+  items: T[];
+};
+
+export function paginate<T extends Page>({
   collection,
   size = 10,
   sortBy = "slug",
   order = "asc",
-}) {
+}: PaginateParams<T>) {
   const total = Math.ceil(collection.length / size);
   return collection
-    .sort(getSorter({ sortBy, order }))
+    .toSorted(getSorter({ sortBy: sortBy as string, order }))
     .reduce((memo, x, index) => {
       if (index % size === 0) {
         const page = Math.floor(index / size) + 1;
@@ -321,5 +403,5 @@ export function paginate({
           items: [...memo[memo.length - 1].items, x],
         },
       ];
-    }, []);
+    }, [] as PaginatedResult<T>[]);
 }
