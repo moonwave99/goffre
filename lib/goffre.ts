@@ -99,6 +99,7 @@ type RenderPageParams = Page & {
   buildPath: string;
   maxSlugLogLength?: number;
   blockSeparator?: string;
+  sitemapLink?: string;
   pages?: Page[];
 };
 
@@ -108,6 +109,7 @@ function renderPage({
   buildPath,
   maxSlugLogLength,
   blockSeparator,
+  sitemapLink,
   ...page
 }: RenderPageParams) {
   return new Promise((resolve, reject) => {
@@ -132,6 +134,7 @@ function renderPage({
       template,
       {
         ...page,
+        sitemapLink,
         layout: typeof page.layout === "undefined" ? "main" : page.layout,
         content: page.content ? marked.parse(page.content) : null,
         blocks: getPageBlocks(
@@ -322,6 +325,7 @@ export async function render({
         buildPath,
         app,
         templates,
+        sitemapLink: sitemap.generate ? `${domain}/sitemap.xml` : "",
         blockSeparator,
         maxSlugLogLength: Math.min(
           Math.max.call(null, ...pages.map((x) => x.slug.length)),

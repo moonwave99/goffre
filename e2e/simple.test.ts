@@ -40,6 +40,7 @@ const nav = [
 
 test.serial("e2e - simple", async (t) => {
   const posts = generateItems(10);
+  const domain = "https://example.com";
 
   await render({
     buildPath,
@@ -50,6 +51,10 @@ test.serial("e2e - simple", async (t) => {
       posts,
       config: { nav },
     },
+    sitemap: {
+      generate: true,
+    },
+    domain,
   });
 
   const ss = new SuperStatic({ buildPath });
@@ -67,6 +72,10 @@ test.serial("e2e - simple", async (t) => {
     const fileName = `${getSlug(page.slug, page)}.html`;
     t.true(ss.hasPage(fileName));
     t.is(ss.getPage(fileName).$("nav .current").html(), page.title);
+    t.is(
+      ss.getPage(fileName).$('link[rel="sitemap"]').attr("href"),
+      `${domain}/sitemap.xml`,
+    );
   });
 
   // posts: existence, right title
@@ -119,7 +128,7 @@ test.serial("e2e - simple - uglyUrls", async (t) => {
 
 test.serial("e2e - simple - prod", async (t) => {
   const posts = generateItems(10);
-  const domain = "http://example.com";
+  const domain = "https://example.com";
 
   await render({
     buildPath,
@@ -163,7 +172,7 @@ test.serial("e2e - simple - prod", async (t) => {
 
 test.serial("e2e - simple - prod - uglyurls", async (t) => {
   const posts = generateItems(10);
-  const domain = "http://example.com";
+  const domain = "https://example.com";
 
   await render({
     buildPath,
@@ -214,7 +223,7 @@ test.serial("e2e - simple - prod - uglyurls", async (t) => {
 
 test.serial("e2e - simple - prod in subfolder", async (t) => {
   const posts = generateItems(10);
-  const domain = "http://example.com/subfolder";
+  const domain = "https://example.com/subfolder";
 
   await render({
     buildPath,
