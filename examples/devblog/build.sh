@@ -2,6 +2,7 @@
 
 cd ../..
 pnpm install
+pnpm build
 cd examples/devblog
 pnpm install
 pnpm dev:generate posts 20
