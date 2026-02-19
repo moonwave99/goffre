@@ -1,7 +1,7 @@
 ---
 title: Another Post
 template: pages/blog/post
-created_at: 2021-11-21
+created_at: 2025-02-20
 slug: blog/:created_at/:title
 cover:
   url: https://picsum.photos/seed/30/800/450

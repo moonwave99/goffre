@@ -1,7 +1,7 @@
 ---
 title: Typography
 template: pages/blog/post
-created_at: 2021-11-28
+created_at: 2025-02-28
 slug: blog/:created_at/:title
 cover:
   url: https://picsum.photos/seed/33/800/450

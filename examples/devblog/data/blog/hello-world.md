@@ -1,7 +1,7 @@
 ---
 title: Hello World
 template: pages/blog/post
-created_at: 2021-11-20
+created_at: 2025-02-25
 slug: blog/:created_at/:title
 cover:
   url: https://picsum.photos/seed/31/800/450

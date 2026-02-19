@@ -1,7 +1,7 @@
 ---
 title: Yet Another Post
 template: pages/blog/post
-created_at: 2021-11-23
+created_at: 2025-02-15
 slug: blog/:created_at/:title
 cover:
   url: https://picsum.photos/seed/34/800/450
