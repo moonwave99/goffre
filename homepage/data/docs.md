@@ -10,8 +10,8 @@ Loads data from a folder, returns structured information gathered from `.md` and
 const { json, pages } = await load();
 ```
 
--   `json` is an object with **key = filename** and **value = filename contents**
--   `pages` is an array of parsed markdown files, each with front matter (destructured at root level) merged with page body inside the `content` key
+- `json` is an object with **key = filename** and **value = filename contents**
+- `pages` is an array of parsed markdown files, each with front matter (destructured at root level) merged with page body inside the `content` key
 
 For instance the following folder:
 

@@ -15,16 +15,13 @@ npm install @moonwave99/goffre --save
 ```js
 import { load, render } from "@moonwave99/goffre";
 
-(async () => {
+try {
   const { pages } = await load();
-
-  try {
-    const results = await render({ pages });
-    console.log(`Generated ${results.length} pages`);
-  } catch (error) {
-    console.log("Error generating site", error);
-  }
-})();
+  const results = await render({ pages });
+  console.log(`Generated ${results.length} pages`);
+} catch (error) {
+  console.log("Error generating site", error);
+}
 ```
 
 Default paths:
