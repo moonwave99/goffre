@@ -19,6 +19,8 @@ const DEFAULT_BUILD_PATH = path.join(process.cwd(), "dist");
 const MAX_SLUG_LOG_LENGTH = 40;
 const DEFAULT_BLOCK_SEPARATOR = "<!-- block -->";
 
+const thisYear = new Date().getFullYear();
+
 function log(...args: unknown[]) {
   console.log.apply(
     null,
@@ -133,6 +135,7 @@ function renderPage({
       {
         ...page,
         sitemapLink,
+        thisYear,
         layout: typeof page.layout === "undefined" ? "main" : page.layout,
         content: page.content ? marked.parse(page.content) : null,
         blocks: getPageBlocks(
