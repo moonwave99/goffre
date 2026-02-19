@@ -4,11 +4,11 @@ template: pages/blog/post
 created_at: 2021-11-23
 slug: blog/:created_at/:title
 cover:
-    url: https://source.unsplash.com/collection/3403106/800x450?3
-    caption: A nice picture
-    attribution:
-        text: "Source: Unsplash"
-        link: https://source.unsplash.com/
+  url: https://picsum.photos/seed/34/800/450
+  caption: A nice picture
+  attribution:
+    text: "Source: Picsum"
+    link: https://picsum.com/
 ---
 
 She stiffened a little on the kerb, waiting for Durtnall’s van to pass.

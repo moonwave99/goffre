@@ -52,9 +52,6 @@ export function getRandomProjectNames(length: number) {
   return helpers.arrayElements(projectNames, length);
 }
 
-const UNSPLASH_COLLECTION = 4324303;
-const COVER_SIZE = "800x450";
-
 type WriteOutputParams = {
   basePath: string;
   fileName: string;
@@ -89,6 +86,23 @@ type GeneratePostParams = {
   withBlocks?: boolean;
 };
 
+type GetCoverParams = {
+  index: number;
+  width: number;
+  height: number;
+};
+
+function getCover({ index, width, height }: GetCoverParams) {
+  return {
+    url: `https://picsum.photos/seed/${index}/${width}/${height}`,
+    caption: "A nice picture",
+    attribution: {
+      text: "Source: Picsum",
+      link: "https://picsum.photos/",
+    },
+  };
+}
+
 export function generatePost({
   index,
   template = "pages/blog/post",
@@ -102,18 +116,11 @@ export function generatePost({
     template,
     created_at: date.between({ from: "2010-01-01", to: new Date() }),
     slug,
-    cover: {
-      url: `https://source.unsplash.com/collection/${UNSPLASH_COLLECTION}/${COVER_SIZE}?${index}`,
-      caption: "A nice picture",
-      attribution: {
-        text: "Source: Unsplash",
-        link: "https://source.unsplash.com/",
-      },
-    },
+    cover: getCover({ index, width: 800, height: 450 }),
     fileName,
     content: withBlocks
       ? Array.from({ length: 3 }, (_, i) => getBlock(i)).join("\n\n")
-      : lorem.paragraphs(5),
+      : lorem.paragraphs(5, "\n\n"),
   };
 }
 
@@ -140,15 +147,8 @@ export function generateProject({
     homepage: "https://example.com/",
     demo: "https://example.com/",
     technologies: helpers.arrayElements(techs, 3),
-    cover: {
-      url: `https://source.unsplash.com/${COVER_SIZE}/?web&${name}`,
-      caption: "A nice picture",
-      attribution: {
-        text: "Source: Unsplash",
-        link: "https://source.unsplash.com/",
-      },
-    },
+    cover: getCover({ index, width: 800, height: 450 }),
     fileName,
-    content: lorem.paragraphs(5),
+    content: lorem.paragraphs(5, "\n\n"),
   };
 }

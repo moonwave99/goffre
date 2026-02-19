@@ -4,11 +4,11 @@ template: pages/blog/post
 created_at: 2021-11-21
 slug: blog/:created_at/:title
 cover:
-    url: https://source.unsplash.com/collection/3403106/800x450?2
-    caption: A nice picture
-    attribution:
-        text: "Source: Unsplash"
-        link: https://source.unsplash.com/
+  url: https://picsum.photos/seed/30/800/450
+  caption: A nice picture
+  attribution:
+    text: "Source: Picsum"
+    link: https://picsum.com/
 ---
 
 For Lucy had her work cut out for her.

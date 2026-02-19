@@ -4,11 +4,11 @@ template: pages/blog/post
 created_at: 2021-11-24
 slug: blog/:created_at/:title
 cover:
-    url: https://source.unsplash.com/collection/4324303/800x450?4
-    caption: A nice picture
-    attribution:
-        text: "Source: Unsplash"
-        link: https://source.unsplash.com/
+  url: https://picsum.photos/seed/32/800/450
+  caption: A nice picture
+  attribution:
+    text: "Source: Picsum"
+    link: https://picsum.com/
 ---
 
 For it was the middle of June.

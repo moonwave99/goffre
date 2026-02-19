@@ -1,12 +1,12 @@
 ---
 title: About me
 sitemap:
-    priority: 0.8
+  priority: 0.8
 ---
 
 Hi! My name is **xyz** and I like _thing 1_, _thing 2_ and _thing 3_.
 
-![Me doing something funny](https://source.unsplash.com/collection/4324303/800x450?20)
+![Me doing something funny](https://picsum.photos/seed/45/800/450)
 
 Some curious fact about me:
 

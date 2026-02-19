@@ -8,9 +8,7 @@ import express, { type Express } from "express";
 import { engine } from "express-handlebars";
 import chalk from "chalk";
 import slugify from "slugify";
-import * as defaultHelpers from "./helpers";
-
-export const helpers = defaultHelpers;
+import * as helpers from "./helpers";
 
 const require = createRequire(import.meta.url);
 const { readFile, outputFile } = fs;
@@ -194,14 +192,15 @@ export async function loadMarkdown(cwd: string) {
     files.map(async (fileName) => {
       const fullPath = path.join(cwd, fileName);
       const contents = await readFile(fullPath, "utf-8");
-      const parsed = matter(contents, { excerpt: true });
+      const parsed = matter(contents);
       const outputFileName = fileName.replace(".md", "");
       const slug = !parsed.data.slug
         ? outputFileName
         : getSlug(parsed.data.slug, parsed.data);
+
       return {
         ...parsed.data,
-        excerpt: parsed.excerpt,
+        excerpt: await helpers.getExcerpt(parsed.content),
         slug,
         description: parsed.data.description || parsed.excerpt,
         content: parsed.content,
@@ -277,7 +276,7 @@ export async function render({
     engine({
       ...handlebars,
       helpers: {
-        ...defaultHelpers,
+        ...helpers,
         ...handlebars.helpers,
       },
     }),

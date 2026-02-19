@@ -1,5 +1,6 @@
 import { getSorter, getSlug, type Page } from "./goffre";
 import { marked } from "marked";
+import { stripHtml } from "string-strip-html";
 import { type HelperOptions } from "handlebars";
 
 type Context = {
@@ -19,6 +20,15 @@ type HelperContext = Context & Omit<HelperOptions, "fn" | "inverse">;
 type BlockContext = Context & HelperOptions;
 
 export const markdown = (text: string) => marked(text);
+
+export async function getExcerpt(content: string) {
+  const firstParagraph = content.split("\n").filter(Boolean).at(0);
+  if (!firstParagraph) {
+    return "";
+  }
+  const rendered = await marked(firstParagraph);
+  return stripHtml(rendered).result;
+}
 
 export const getParamLink = (url: string, options: HelperContext) => {
   const output = getSlug(url, options.hash);

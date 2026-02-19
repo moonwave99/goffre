@@ -4,11 +4,11 @@ template: pages/blog/post
 created_at: 2021-11-28
 slug: blog/:created_at/:title
 cover:
-    url: https://source.unsplash.com/collection/4324303/800x450?5
-    caption: A nice picture
-    attribution:
-        text: "Source: Unsplash"
-        link: https://source.unsplash.com/
+  url: https://picsum.photos/seed/33/800/450
+  caption: A nice picture
+  attribution:
+    text: "Source: Picsum"
+    link: https://picsum.com/
 ---
 
 This page showcases various typographic choices.
@@ -31,9 +31,9 @@ Enough I think.
 
 Some lists then:
 
--   pineapple
--   ornithology
--   burlesque
+- pineapple
+- ornithology
+- burlesque
 
 1. take a bottle
 2. drink it down
@@ -66,11 +66,11 @@ Some `code` here:
 ```js
 /* Fill an array with 0's and 1's, and call g(array, width, height) to iterate */
 g = function (f, c, g, d, e, b, h) {
-    g = [];
-    e = [c + 1, c, c - 1, 1];
-    for (b = c * c; b--; g[b] = 3 == d || (f[b] && 2 == d), d = 0)
-        for (h in e) d += f[b + e[h]] + f[b - e[h]];
-    return g;
+  g = [];
+  e = [c + 1, c, c - 1, 1];
+  for (b = c * c; b--; g[b] = 3 == d || (f[b] && 2 == d), d = 0)
+    for (h in e) d += f[b + e[h]] + f[b - e[h]];
+  return g;
 };
 ```
 
