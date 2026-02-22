@@ -1,12 +1,10 @@
-import { generator } from "../../dist/index.js";
-
-const {
+import {
   generatePost,
   generateProject,
   getRandomProjectNames,
   writeOutput,
   toMarkdownFile,
-} = generator;
+} from "../../dist/generator.mjs";
 
 const [, , what, length = 20] = process.argv;
 

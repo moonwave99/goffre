@@ -1,4 +1,4 @@
-import { load, render, paginate } from "../../dist/index.js";
+import { load, render, paginate } from "../../dist/index.mjs";
 import pkg from "./package.json" with { type: "json" };
 
 const dateFormats = {
