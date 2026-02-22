@@ -1,6 +1,6 @@
 {
   "name": "@moonwave99/goffre",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Mini static site generator",
   "author": {
     "name": "Diego Caponera",
@@ -17,7 +17,8 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "ava **/*.test.ts",
-    "lint": "pnpm eslint ./lib --ext .js,.jsx,.ts,.tsx"
+    "lint": "pnpm eslint ./lib --ext .js,.jsx,.ts,.tsx",
+    "prepublish": "pnpm lint && pnpm test && pnpm build"
   },
   "ava": {
     "extensions": {
@@ -30,7 +31,7 @@
       "TSIMP_DIAG": "ignore"
     }
   },
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
