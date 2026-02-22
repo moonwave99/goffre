@@ -1,7 +1,7 @@
 import path from "path";
 import { createRequire } from "module";
 import { readFile } from "fs/promises";
-import { load, render } from "../dist/index.js";
+import { load, render } from "../dist/index.mjs";
 import git from "git-rev-sync";
 
 const require = createRequire(import.meta.url);
